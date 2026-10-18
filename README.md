@@ -36,8 +36,7 @@ ICD 0.321 → 0.439 and SNOMED 0.447 → 0.538.
 <!-- RESULTS:END -->
 
 The candidate-pool recall above is a shortlist ceiling and not an accuracy figure. A single encoder's top-1 is much lower
-(ICD 0.20-0.33, SNOMED 0.43-0.47 on validation), so ranking is the weak step. In the validation ablation, removing the
-dense features costs about 4 points on both systems and removing the ICD hierarchy features about 3 points on ICD; the ICD-only
+(ICD 0.20-0.33, SNOMED 0.43-0.47 on validation), so ranking is the weak step. In the validation ablation, removing the dense features costs about 5 points on ICD and 4 on SNOMED, and removing the ICD hierarchy features about 4 points on ICD; the ICD-only
 second pass adds about 1 point on ICD, which is within noise. Full tables: `reports/metrics.md`, `reports/ablations.md`, `reports/error_analysis_*.md`, `reports/SUMMARY.md`.
 
 ## Architecture (summary)
@@ -86,7 +85,8 @@ PYTHONPATH=src python -m termmap.predict --input <eval file> --output prediction
 ```
 
 - **Needs:** the three challenge files, `models/final.pkl` (rebuilt automatically from the training file if it is missing),
-  and the hash-keyed caches (rebuilt automatically if missing).
+  and the hash-keyed caches (rebuilt automatically if missing).models/final.pkl is not in git. Without the dense snapshots and caches the run falls back to sparse + static-vector mode and will not match the submitted predictions. Bit-identical re-runs are not guaranteed
+  
 - **Output:**
   - predictions in the **same layout as the input**;
   - a wide file with the columns `chunk_id, clinical_entity, icd10cm_code, snomed_code`, in input order, one row per input row;
@@ -100,12 +100,12 @@ PYTHONPATH=src python -m termmap.predict --input <eval file> --output prediction
 
 | stage | what it does |
 |---|---|
-| a | check GPU and Hugging Face access, download the pinned models |
+| a | check GPU and Hugging Face access, download the models |
 | b | gte-base recall@K |
 | c | SapBERT, BioLORD and bge-m3 recall@K |
 | d | union and RRF recall |
-| e | cross-encoder |
-| f | fine-tuning |
+| e | cross-encoder (implemented, not in the final model)|
+| f | fine-tuning (implemented, not run)|
 | g | ablations with seeds and bootstrap CIs, final test, refit |
 | h | reports, error analysis, PDF |
 
@@ -186,7 +186,7 @@ make index && make final-test
 | FremyCompany/BioLORD-2023 | 167aab527b238a50ca65224e6319215d2ff4fc9f | other: verify on model card |
 | BAAI/bge-m3 | 5617a9f61b028005a4858fdac845db406aefb181 | MIT |
 | ncbi/MedCPT-Cross-Encoder (implemented, not evaluated) | 71caf65d4927987813984f54c284405a13fcca49 | other: verify on model card |
-| spaCy en_core_web_lg 3.8.0 | release wheel | verify on model card |
+| spaCy en_core_web_lg 3.8.0 | release wheel | MIT (vectors CC0), read from the packaged meta.json |
 | LightGBM, scikit-learn, RapidFuzz, FAISS (exact flat index) | pinned in requirements.txt | MIT / BSD-3 / MIT / MIT |
 | Supplied ICD-10-CM export; SNOMED CT US export (Term Map gte_base_fp32 index) | file hashes in configs/resources.yaml | SNOMED CT licence applies |
 
