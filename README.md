@@ -7,7 +7,7 @@ It runs locally and offline after setup. It needs no API key and never sends dat
 > **Honest status.** The 95% target on both systems was **not reached**. The numbers below are final: the frozen
 > configuration was scored once on the held-out final test split, and `models/final.pkl` was then refit on
 > train+val+test. Write-up: [`docs/TermMap_writeup.pdf`](docs/TermMap_writeup.pdf).
-> Demo video: [DEMO VIDEO LINK]
+
 
 ## Results
 
