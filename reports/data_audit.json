@@ -1,0 +1,443 @@
+{
+  "ICD10CM": {
+    "buckets": {
+      "codes_freq_1": 465,
+      "codes_freq_2_5": 297,
+      "codes_freq_6p": 104,
+      "distinct": 866,
+      "share_codes_singleton": 0.537,
+      "share_rows_singleton_code": 0.2017
+    },
+    "dict_codes_with_multiple_desc": 53874,
+    "dict_range_headers": 111,
+    "display_matches_gold_code_desc": 2200,
+    "display_not_anywhere_in_dict": 73,
+    "display_not_in_gold_code_desc": 103,
+    "duplicate_entity_strings": 0,
+    "entities_with_multiple_codes": 0,
+    "entity_exact_desc_any_code": 155,
+    "entity_exact_desc_of_gold": 102,
+    "gold_chapter_letter_counts": [
+      [
+        "R",
+        690
+      ],
+      [
+        "M",
+        293
+      ],
+      [
+        "I",
+        292
+      ],
+      [
+        "J",
+        143
+      ],
+      [
+        "E",
+        131
+      ],
+      [
+        "K",
+        102
+      ],
+      [
+        "L",
+        84
+      ],
+      [
+        "Z",
+        79
+      ],
+      [
+        "G",
+        79
+      ],
+      [
+        "N",
+        68
+      ],
+      [
+        "H",
+        62
+      ],
+      [
+        "C",
+        50
+      ],
+      [
+        "S",
+        50
+      ],
+      [
+        "F",
+        46
+      ],
+      [
+        "T",
+        37
+      ],
+      [
+        "B",
+        30
+      ],
+      [
+        "D",
+        28
+      ],
+      [
+        "W",
+        14
+      ],
+      [
+        "A",
+        8
+      ],
+      [
+        "U",
+        7
+      ],
+      [
+        "Q",
+        6
+      ],
+      [
+        "O",
+        2
+      ],
+      [
+        "X",
+        2
+      ]
+    ],
+    "gold_depth_counts": [
+      [
+        4,
+        1068
+      ],
+      [
+        5,
+        775
+      ],
+      [
+        6,
+        235
+      ],
+      [
+        3,
+        117
+      ],
+      [
+        7,
+        108
+      ]
+    ],
+    "gold_in_dict_exact": 2303,
+    "gold_in_dict_normalized": 2303,
+    "gold_is_category_3char": 117,
+    "gold_is_leaf": 2260,
+    "gold_is_range": 0,
+    "gold_non_leaf": 43,
+    "gold_not_in_dict": [
+      [
+        "L6.0",
+        2
+      ]
+    ],
+    "norm_entities_with_multiple_codes": 0
+  },
+  "SNOMEDCT_US": {
+    "buckets": {
+      "codes_freq_1": 1199,
+      "codes_freq_2_5": 427,
+      "codes_freq_6p": 43,
+      "distinct": 1669,
+      "share_codes_singleton": 0.7184,
+      "share_rows_singleton_code": 0.4441
+    },
+    "dict_concepts_with_multiple_desc": 382122,
+    "dict_concepts_without_fsn_tag": 363,
+    "dict_semantic_tags_top": [
+      [
+        "disorder",
+        92887
+      ],
+      [
+        "procedure",
+        57843
+      ],
+      [
+        "finding",
+        37342
+      ],
+      [
+        "body structure",
+        36349
+      ],
+      [
+        "organism",
+        34952
+      ],
+      [
+        "substance",
+        27983
+      ],
+      [
+        "physical object",
+        14051
+      ],
+      [
+        "qualifier value",
+        11281
+      ],
+      [
+        "observable entity",
+        11001
+      ],
+      [
+        "medicinal product",
+        8565
+      ],
+      [
+        "clinical drug",
+        8355
+      ],
+      [
+        "medicinal product form",
+        7272
+      ],
+      [
+        "situation",
+        5577
+      ],
+      [
+        "morphologic abnormality",
+        5155
+      ],
+      [
+        "occupation",
+        3526
+      ],
+      [
+        "event",
+        3403
+      ],
+      [
+        "regime/therapy",
+        3153
+      ],
+      [
+        "specimen",
+        1867
+      ],
+      [
+        "assessment scale",
+        1539
+      ],
+      [
+        "product",
+        1520
+      ],
+      [
+        "environment",
+        1244
+      ],
+      [
+        "attribute",
+        1193
+      ],
+      [
+        "cell",
+        716
+      ],
+      [
+        "geographic location",
+        659
+      ],
+      [
+        "navigational concept",
+        617
+      ]
+    ],
+    "display_matches_gold_code_desc": 2700,
+    "display_not_anywhere_in_dict": 0,
+    "display_not_in_gold_code_desc": 0,
+    "duplicate_entity_strings": 0,
+    "entities_with_multiple_codes": 0,
+    "entity_exact_desc_any_code": 590,
+    "entity_exact_desc_of_gold": 512,
+    "gold_in_dict_exact": 2700,
+    "gold_in_dict_normalized": 2700,
+    "gold_not_in_dict": [],
+    "gold_semantic_tags": [
+      [
+        "disorder",
+        1299
+      ],
+      [
+        "finding",
+        1055
+      ],
+      [
+        "morphologic abnormality",
+        72
+      ],
+      [
+        "situation",
+        65
+      ],
+      [
+        "observable entity",
+        52
+      ],
+      [
+        "procedure",
+        35
+      ],
+      [
+        "body structure",
+        34
+      ],
+      [
+        "qualifier value",
+        30
+      ],
+      [
+        "substance",
+        11
+      ],
+      [
+        "regime/therapy",
+        10
+      ],
+      [
+        "event",
+        10
+      ],
+      [
+        "organism",
+        7
+      ],
+      [
+        "physical object",
+        6
+      ],
+      [
+        "occupation",
+        3
+      ],
+      [
+        "environment",
+        2
+      ],
+      [
+        "assessment scale",
+        2
+      ],
+      [
+        "tumor staging",
+        1
+      ],
+      [
+        "navigational concept",
+        1
+      ],
+      [
+        "record artifact",
+        1
+      ],
+      [
+        "person",
+        1
+      ],
+      [
+        "physical force",
+        1
+      ],
+      [
+        "attribute",
+        1
+      ],
+      [
+        "clinical drug",
+        1
+      ]
+    ],
+    "norm_entities_with_multiple_codes": 1
+  },
+  "chunk_has_br": 157,
+  "chunk_has_header_markup": 229,
+  "chunk_len": {
+    "max": 2112.0,
+    "median": 156.0,
+    "min": 0.0,
+    "p25": 82.0,
+    "p75": 404.0,
+    "p95": 1065.699999999999
+  },
+  "coding_system_counts": {
+    "ICD10CM": 2306,
+    "SNOMEDCT_US": 7340
+  },
+  "columns": [
+    "entity",
+    "chunk_text",
+    "coding_system",
+    "code",
+    "display",
+    "subconcept"
+  ],
+  "diag_duplicate_rows": 0,
+  "diag_pairs": 2882,
+  "diag_rows_by_system": {
+    "ICD10CM": 2305,
+    "SNOMEDCT_US": 2700
+  },
+  "dictionaries": {
+    "ICD10CM": {
+      "n_codes": 98182,
+      "n_desc_rows": 159306,
+      "n_unique_norm_desc": 158125,
+      "path": "/home/claude/termmap/resources/icd10cm_codes.xlsx",
+      "sha256": "60a91dffd515b77c8c7da0bddfd7b18540421bd445e11bdef129573ad90cd2cd"
+    },
+    "SNOMEDCT_US": {
+      "n_codes": 382124,
+      "n_desc_rows": 984585,
+      "n_unique_norm_desc": 623014,
+      "path": "/home/claude/termmap/resources/SNOMEDCT_US_codes_and_descriptions.xlsx",
+      "sha256": "7cd4ea3c94bcdeff9634628e50c665d02c424a4585e3971acfb34bcb7db6e719"
+    }
+  },
+  "discrepancies_vs_brief": [],
+  "distinct_entities": 2778,
+  "distinct_norm_entities": 2766,
+  "dtypes": {
+    "chunk_text": "str",
+    "code": "str",
+    "coding_system": "str",
+    "display": "str",
+    "entity": "str",
+    "subconcept": "str"
+  },
+  "duplicate_full_rows": 0,
+  "empty_chunk_text_pairs": 3,
+  "entity_in_multiple_chunks": 104,
+  "eval_split_signals": {
+    "id_like_columns": [],
+    "split_like_columns": []
+  },
+  "pairs_both_labels": 2123,
+  "pairs_icd_only": 182,
+  "pairs_snomed_only": 577,
+  "rows": 9646,
+  "subconcept_counts": {
+    "Device": 437,
+    "DiagnosisCode": 5005,
+    "EncounterType": 567,
+    "LabService": 858,
+    "MedicationProfileMedication": 1,
+    "ProcedureCode": 2778
+  }
+}

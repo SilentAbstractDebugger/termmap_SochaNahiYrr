@@ -1,0 +1,35 @@
+# ---- proprietary challenge data: NEVER commit -------------------------------
+data/
+resources/
+*.csv
+*.tsv
+*.xlsx
+*.xls
+# ---- models, weights, caches -------------------------------------------------
+models/
+*.pkl
+*.pickle
+*.npy
+*.npz
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.onnx
+*.faiss
+# ---- outputs that may contain proprietary rows ---------------------------------
+reports/private/
+reports/diagnostics.csv
+outputs/
+predictions*
+logs/
+# ---- secrets / local settings ---------------------------------------------------
+.env
+.env.*
+!.env.example
+# ---- python / tooling -----------------------------------------------------------
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+.ipynb_checkpoints/

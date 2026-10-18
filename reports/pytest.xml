@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="5" skipped="0" tests="42" time="52.230" timestamp="2026-10-17T22:27:49.958311+00:00" hostname="vm"><testcase classname="tests.test_dense" name="test_dense_index_build_cache_offline_and_deterministic" time="0.251" /><testcase classname="tests.test_dense" name="test_dense_incremental_reembedding_on_drift" time="0.051" /><testcase classname="tests.test_dense" name="test_feature_builder_with_named_dense_channel" time="0.065" /><testcase classname="tests.test_dense" name="test_cross_encoder_train_score_cache_and_merge" time="0.094" /><testcase classname="tests.test_dense" name="test_calibration_monotone" time="0.334" /><testcase classname="tests.test_dense" name="test_finetune_pairs_exclude_heldout_codes_and_rows" time="7.869" /><testcase classname="tests.test_pipeline" name="test_output_schema_wide" time="7.994" /><testcase classname="tests.test_pipeline" name="test_output_schema_long" time="0.002" /><testcase classname="tests.test_pipeline" name="test_dictionary_validity_and_both_systems" time="0.003" /><testcase classname="tests.test_pipeline" name="test_no_duplicate_rows_introduced" time="0.002" /><testcase classname="tests.test_pipeline" name="test_gold_normalization_reports_malformed" time="0.091" /><testcase classname="tests.test_pipeline" name="test_determinism" time="0.001" /><testcase classname="tests.test_pipeline" name="test_hard_case[htn]" time="0.167" /><testcase classname="tests.test_pipeline" name="test_hard_case[essential_htn_well_controlled]" time="0.148" /><testcase classname="tests.test_pipeline" name="test_hard_case[hbp_history]" time="0.158" /><testcase classname="tests.test_pipeline" name="test_hard_case[pulmonary_hypertension]" time="0.145" /><testcase classname="tests.test_pipeline" name="test_hard_case[malignant_hypertension]" time="0.146" /><testcase classname="tests.test_pipeline" name="test_hard_case[diabetic_neuropathy]" time="0.162"><failure message="AssertionError: ICD E13.40 != E11.40&#10;assert not ['ICD E13.40 != E11.40']">case = {'id': 'diabetic_neuropathy', 'source': 'statement', 'entity': 'diabetic neuropathy', 'chunk_text': 'Type 2 DM complicated by diabetic neuropathy of both feet.', ...}
+predictor = &lt;termmap.pipeline.Predictor object at 0x7fe481ee9f30&gt;
+R = Resources(cfg={'seed': 13, 'num_threads': 2, 'feature_cache_dir': 'models/cache', 'data': {'train_path': 'data/hackath..._lg', 'crosswalk': 'not supplied', 'snomed_hierarchy': 'not supplied (no IS-A features)', 'cross_encoder': 'disabled'})
+
+    @needs_model
+    @pytest.mark.parametrize("case", HARD, ids=[h["id"] for h in HARD])
+    def test_hard_case(case, predictor, R):
+        q = pd.DataFrame({"qid": ["h"], "entity": [case["entity"]], "chunk_text": [case["chunk_text"]]})
+        tops = predictor.predict(q)
+        icd = tops["ICD10CM"].iloc[0]["code"]
+        sno = tops["SNOMEDCT_US"].iloc[0]["code"]
+        assert R.kbs["ICD10CM"].valid(icd) and R.kbs["SNOMEDCT_US"].valid(sno)
+        msgs = []
+        if "expect_icd" in case and icd != case["expect_icd"]:
+            msgs.append(f"ICD {icd} != {case['expect_icd']}")
+        if "expect_snomed" in case and case.get("conflict") != "snomed" and sno != case["expect_snomed"]:
+            msgs.append(f"SNOMED {sno} != {case['expect_snomed']}")
+        if "plaus_icd_prefix" in case and not any(icd.startswith(p) for p in case["plaus_icd_prefix"]):
+            msgs.append(f"ICD {icd} not in plausible families {case['plaus_icd_prefix']}")
+        if "plaus_snomed_words" in case:
+            txt = " ".join(R.kbs["SNOMEDCT_US"].descs_norm[sno])
+            if not any(w in txt for w in case["plaus_snomed_words"]):
+                msgs.append(f"SNOMED {sno} ({R.kbs['SNOMEDCT_US'].preferred[sno]}) lacks {case['plaus_snomed_words']}")
+&gt;       assert not msgs, "; ".join(msgs)
+E       AssertionError: ICD E13.40 != E11.40
+E       assert not ['ICD E13.40 != E11.40']
+
+tests/test_pipeline.py:136: AssertionError</failure></testcase><testcase classname="tests.test_pipeline" name="test_hard_case[diabetes_plain]" time="0.148" /><testcase classname="tests.test_pipeline" name="test_hard_case[ms_mitral]" time="0.209"><failure message="AssertionError: ICD Q23.2 not in plausible families ['I05', 'I34']&#10;assert not [&quot;ICD Q23.2 not in plausible families ['I05', 'I34']&quot;]">case = {'id': 'ms_mitral', 'source': 'synthetic', 'entity': 'MS', 'chunk_text': 'Echo: thickened mitral valve leaflets, MS with mean gradient 10 mmHg.', ...}
+predictor = &lt;termmap.pipeline.Predictor object at 0x7fe481ee9f30&gt;
+R = Resources(cfg={'seed': 13, 'num_threads': 2, 'feature_cache_dir': 'models/cache', 'data': {'train_path': 'data/hackath..._lg', 'crosswalk': 'not supplied', 'snomed_hierarchy': 'not supplied (no IS-A features)', 'cross_encoder': 'disabled'})
+
+    @needs_model
+    @pytest.mark.parametrize("case", HARD, ids=[h["id"] for h in HARD])
+    def test_hard_case(case, predictor, R):
+        q = pd.DataFrame({"qid": ["h"], "entity": [case["entity"]], "chunk_text": [case["chunk_text"]]})
+        tops = predictor.predict(q)
+        icd = tops["ICD10CM"].iloc[0]["code"]
+        sno = tops["SNOMEDCT_US"].iloc[0]["code"]
+        assert R.kbs["ICD10CM"].valid(icd) and R.kbs["SNOMEDCT_US"].valid(sno)
+        msgs = []
+        if "expect_icd" in case and icd != case["expect_icd"]:
+            msgs.append(f"ICD {icd} != {case['expect_icd']}")
+        if "expect_snomed" in case and case.get("conflict") != "snomed" and sno != case["expect_snomed"]:
+            msgs.append(f"SNOMED {sno} != {case['expect_snomed']}")
+        if "plaus_icd_prefix" in case and not any(icd.startswith(p) for p in case["plaus_icd_prefix"]):
+            msgs.append(f"ICD {icd} not in plausible families {case['plaus_icd_prefix']}")
+        if "plaus_snomed_words" in case:
+            txt = " ".join(R.kbs["SNOMEDCT_US"].descs_norm[sno])
+            if not any(w in txt for w in case["plaus_snomed_words"]):
+                msgs.append(f"SNOMED {sno} ({R.kbs['SNOMEDCT_US'].preferred[sno]}) lacks {case['plaus_snomed_words']}")
+&gt;       assert not msgs, "; ".join(msgs)
+E       AssertionError: ICD Q23.2 not in plausible families ['I05', 'I34']
+E       assert not ["ICD Q23.2 not in plausible families ['I05', 'I34']"]
+
+tests/test_pipeline.py:136: AssertionError</failure></testcase><testcase classname="tests.test_pipeline" name="test_hard_case[ms_neuro]" time="0.141" /><testcase classname="tests.test_pipeline" name="test_hard_case[ra_joint]" time="0.159"><failure message="AssertionError: ICD R41.2 not in plausible families ['M05', 'M06']&#10;assert not [&quot;ICD R41.2 not in plausible families ['M05', 'M06']&quot;]">case = {'id': 'ra_joint', 'source': 'synthetic', 'entity': 'RA', 'chunk_text': 'Symmetric small joint synovitis of hands, rheumatoid factor positive, RA flare.', ...}
+predictor = &lt;termmap.pipeline.Predictor object at 0x7fe481ee9f30&gt;
+R = Resources(cfg={'seed': 13, 'num_threads': 2, 'feature_cache_dir': 'models/cache', 'data': {'train_path': 'data/hackath..._lg', 'crosswalk': 'not supplied', 'snomed_hierarchy': 'not supplied (no IS-A features)', 'cross_encoder': 'disabled'})
+
+    @needs_model
+    @pytest.mark.parametrize("case", HARD, ids=[h["id"] for h in HARD])
+    def test_hard_case(case, predictor, R):
+        q = pd.DataFrame({"qid": ["h"], "entity": [case["entity"]], "chunk_text": [case["chunk_text"]]})
+        tops = predictor.predict(q)
+        icd = tops["ICD10CM"].iloc[0]["code"]
+        sno = tops["SNOMEDCT_US"].iloc[0]["code"]
+        assert R.kbs["ICD10CM"].valid(icd) and R.kbs["SNOMEDCT_US"].valid(sno)
+        msgs = []
+        if "expect_icd" in case and icd != case["expect_icd"]:
+            msgs.append(f"ICD {icd} != {case['expect_icd']}")
+        if "expect_snomed" in case and case.get("conflict") != "snomed" and sno != case["expect_snomed"]:
+            msgs.append(f"SNOMED {sno} != {case['expect_snomed']}")
+        if "plaus_icd_prefix" in case and not any(icd.startswith(p) for p in case["plaus_icd_prefix"]):
+            msgs.append(f"ICD {icd} not in plausible families {case['plaus_icd_prefix']}")
+        if "plaus_snomed_words" in case:
+            txt = " ".join(R.kbs["SNOMEDCT_US"].descs_norm[sno])
+            if not any(w in txt for w in case["plaus_snomed_words"]):
+                msgs.append(f"SNOMED {sno} ({R.kbs['SNOMEDCT_US'].preferred[sno]}) lacks {case['plaus_snomed_words']}")
+&gt;       assert not msgs, "; ".join(msgs)
+E       AssertionError: ICD R41.2 not in plausible families ['M05', 'M06']
+E       assert not ["ICD R41.2 not in plausible families ['M05', 'M06']"]
+
+tests/test_pipeline.py:136: AssertionError</failure></testcase><testcase classname="tests.test_pipeline" name="test_hard_case[ra_atrium]" time="0.149"><failure message="AssertionError: ICD R41.2 not in plausible families ['I51', 'I31', 'I34', 'I36', 'I37', 'I27', 'R93', 'Q24']&#10;assert not [&quot;ICD R41.2 not in plausible families ['I51', 'I31', 'I34', 'I36', 'I37', 'I27', 'R93', 'Q24']&quot;]">case = {'id': 'ra_atrium', 'source': 'synthetic', 'entity': 'RA', 'chunk_text': 'Echo: RA is severely dilated, right atrial pressure elevated.', ...}
+predictor = &lt;termmap.pipeline.Predictor object at 0x7fe481ee9f30&gt;
+R = Resources(cfg={'seed': 13, 'num_threads': 2, 'feature_cache_dir': 'models/cache', 'data': {'train_path': 'data/hackath..._lg', 'crosswalk': 'not supplied', 'snomed_hierarchy': 'not supplied (no IS-A features)', 'cross_encoder': 'disabled'})
+
+    @needs_model
+    @pytest.mark.parametrize("case", HARD, ids=[h["id"] for h in HARD])
+    def test_hard_case(case, predictor, R):
+        q = pd.DataFrame({"qid": ["h"], "entity": [case["entity"]], "chunk_text": [case["chunk_text"]]})
+        tops = predictor.predict(q)
+        icd = tops["ICD10CM"].iloc[0]["code"]
+        sno = tops["SNOMEDCT_US"].iloc[0]["code"]
+        assert R.kbs["ICD10CM"].valid(icd) and R.kbs["SNOMEDCT_US"].valid(sno)
+        msgs = []
+        if "expect_icd" in case and icd != case["expect_icd"]:
+            msgs.append(f"ICD {icd} != {case['expect_icd']}")
+        if "expect_snomed" in case and case.get("conflict") != "snomed" and sno != case["expect_snomed"]:
+            msgs.append(f"SNOMED {sno} != {case['expect_snomed']}")
+        if "plaus_icd_prefix" in case and not any(icd.startswith(p) for p in case["plaus_icd_prefix"]):
+            msgs.append(f"ICD {icd} not in plausible families {case['plaus_icd_prefix']}")
+        if "plaus_snomed_words" in case:
+            txt = " ".join(R.kbs["SNOMEDCT_US"].descs_norm[sno])
+            if not any(w in txt for w in case["plaus_snomed_words"]):
+                msgs.append(f"SNOMED {sno} ({R.kbs['SNOMEDCT_US'].preferred[sno]}) lacks {case['plaus_snomed_words']}")
+&gt;       assert not msgs, "; ".join(msgs)
+E       AssertionError: ICD R41.2 not in plausible families ['I51', 'I31', 'I34', 'I36', 'I37', 'I27', 'R93', 'Q24']
+E       assert not ["ICD R41.2 not in plausible families ['I51', 'I31', 'I34', 'I36', 'I37', 'I27', 'R93', 'Q24']"]
+
+tests/test_pipeline.py:136: AssertionError</failure></testcase><testcase classname="tests.test_pipeline" name="test_hard_case[pid_pelvic]" time="0.181" /><testcase classname="tests.test_pipeline" name="test_hard_case[pid_disc]" time="0.191"><failure message="AssertionError: ICD N73.9 not in plausible families ['M51', 'M50', 'M47', 'M54']; SNOMED 237037006 (Acute pelvic inflammatory disease) lacks ['disc', 'intervertebral']&#10;assert not [&quot;ICD N73.9 not in plausible families ['M51', 'M50', 'M47', 'M54']&quot;, &quot;SNOMED 237037006 (Acute pelvic inflammatory disease) lacks ['disc', 'intervertebral']&quot;]">case = {'id': 'pid_disc', 'source': 'synthetic', 'entity': 'PID', 'chunk_text': 'MRI lumbar spine: L4-L5 PID compressing the right L5 nerve root, radicular pain.', ...}
+predictor = &lt;termmap.pipeline.Predictor object at 0x7fe481ee9f30&gt;
+R = Resources(cfg={'seed': 13, 'num_threads': 2, 'feature_cache_dir': 'models/cache', 'data': {'train_path': 'data/hackath..._lg', 'crosswalk': 'not supplied', 'snomed_hierarchy': 'not supplied (no IS-A features)', 'cross_encoder': 'disabled'})
+
+    @needs_model
+    @pytest.mark.parametrize("case", HARD, ids=[h["id"] for h in HARD])
+    def test_hard_case(case, predictor, R):
+        q = pd.DataFrame({"qid": ["h"], "entity": [case["entity"]], "chunk_text": [case["chunk_text"]]})
+        tops = predictor.predict(q)
+        icd = tops["ICD10CM"].iloc[0]["code"]
+        sno = tops["SNOMEDCT_US"].iloc[0]["code"]
+        assert R.kbs["ICD10CM"].valid(icd) and R.kbs["SNOMEDCT_US"].valid(sno)
+        msgs = []
+        if "expect_icd" in case and icd != case["expect_icd"]:
+            msgs.append(f"ICD {icd} != {case['expect_icd']}")
+        if "expect_snomed" in case and case.get("conflict") != "snomed" and sno != case["expect_snomed"]:
+            msgs.append(f"SNOMED {sno} != {case['expect_snomed']}")
+        if "plaus_icd_prefix" in case and not any(icd.startswith(p) for p in case["plaus_icd_prefix"]):
+            msgs.append(f"ICD {icd} not in plausible families {case['plaus_icd_prefix']}")
+        if "plaus_snomed_words" in case:
+            txt = " ".join(R.kbs["SNOMEDCT_US"].descs_norm[sno])
+            if not any(w in txt for w in case["plaus_snomed_words"]):
+                msgs.append(f"SNOMED {sno} ({R.kbs['SNOMEDCT_US'].preferred[sno]}) lacks {case['plaus_snomed_words']}")
+&gt;       assert not msgs, "; ".join(msgs)
+E       AssertionError: ICD N73.9 not in plausible families ['M51', 'M50', 'M47', 'M54']; SNOMED 237037006 (Acute pelvic inflammatory disease) lacks ['disc', 'intervertebral']
+E       assert not ["ICD N73.9 not in plausible families ['M51', 'M50', 'M47', 'M54']", "SNOMED 237037006 (Acute pelvic inflammatory disease) lacks ['disc', 'intervertebral']"]
+
+tests/test_pipeline.py:136: AssertionError</failure></testcase><testcase classname="tests.test_pipeline" name="test_hard_case[ckd_ocr]" time="0.163" /><testcase classname="tests.test_pipeline" name="test_hard_case[chest_pain]" time="0.143" /><testcase classname="tests.test_pipeline" name="test_leakage_group_and_code_disjoint" time="0.907" /><testcase classname="tests.test_pipeline" name="test_drift_modified_dictionary" time="17.230" /><testcase classname="tests.test_pipeline" name="test_fallback_modes" time="0.952" /><testcase classname="tests.test_pipeline" name="test_empty_entity_and_context" time="0.130" /><testcase classname="tests.test_units" name="test_schema_train_style" time="0.002" /><testcase classname="tests.test_units" name="test_schema_statement_style" time="0.002" /><testcase classname="tests.test_units" name="test_glue_and_truncation_repair" time="0.001" /><testcase classname="tests.test_units" name="test_typo_repair_and_original_preserved" time="0.002" /><testcase classname="tests.test_units" name="test_abbreviation_hypotheses_not_destructive" time="0.001" /><testcase classname="tests.test_units" name="test_basic_norm" time="0.001" /><testcase classname="tests.test_units" name="test_laterality_acuity_stage" time="0.001" /><testcase classname="tests.test_units" name="test_well_controlled_low_relevance" time="0.001" /><testcase classname="tests.test_units" name="test_icd_chain_and_flags" time="0.003" /><testcase classname="tests.test_units" name="test_code_normalization_and_malformed" time="0.002" /><testcase classname="tests.test_units" name="test_empty_context_and_markup" time="0.298" /></testsuite></testsuites>

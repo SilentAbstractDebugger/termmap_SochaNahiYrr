@@ -1,0 +1,108 @@
+{
+  "FM4_granularity": {
+    "both_right": 133,
+    "both_wrong": 66,
+    "icd_right_snomed_wrong": 66,
+    "pairs_with_both_labels": 323,
+    "snomed_right_icd_wrong": 58
+  },
+  "ICD10CM": {
+    "by_category": {
+      "abbreviation misinterpreted": 10,
+      "context ignored": 10,
+      "dictionary/version mismatch": 0,
+      "gold absent from candidates (lexical)": 11,
+      "gold absent from candidates (missing synonym)": 45,
+      "hierarchy confusion (same category)": 26,
+      "label noise suspicion": 4,
+      "negation/history mishandled": 0,
+      "qualifier ignored": 1,
+      "retrieved but misranked": 34,
+      "wrong specificity: over-coding": 0,
+      "wrong specificity: under-coding": 0
+    },
+    "by_failure_mode": {
+      "FM1 nearest string is the wrong concept": 40,
+      "FM2 abbreviation (term has a token in the abbreviation/translation lexicon)": 84,
+      "FM3 specificity calibration": 26,
+      "FM5 long tail (code unseen in training)": 44,
+      "FM6 upstream noise (OOV token in term)": 10
+    },
+    "errors": 141,
+    "n": 353
+  },
+  "SNOMEDCT_US": {
+    "by_category": {
+      "abbreviation misinterpreted": 11,
+      "context ignored": 15,
+      "dictionary/version mismatch": 0,
+      "gold absent from candidates (lexical)": 26,
+      "gold absent from candidates (missing synonym)": 36,
+      "hierarchy confusion (same category)": 0,
+      "label noise suspicion": 0,
+      "negation/history mishandled": 6,
+      "qualifier ignored": 1,
+      "retrieved but misranked": 95,
+      "wrong specificity: over-coding": 0,
+      "wrong specificity: under-coding": 0
+    },
+    "by_failure_mode": {
+      "FM1 nearest string is the wrong concept": 65,
+      "FM2 abbreviation (term has a token in the abbreviation/translation lexicon)": 110,
+      "FM5 long tail (code unseen in training)": 108,
+      "FM6 upstream noise (OOV token in term)": 21
+    },
+    "errors": 190,
+    "n": 402
+  },
+  "fixes_log": [
+    {
+      "change": "v1: lexical (exact/BM25/char-3g, top 30) + training neighbours + LambdaRank, code dropout 0.35",
+      "icd": 0.5235,
+      "kept": true,
+      "snomed": 0.5
+    },
+    {
+      "change": "+ synonym bridge, + training-mined token translation, top-k 30->50, max candidates 120->150",
+      "icd": 0.5257,
+      "kept": true,
+      "snomed": 0.5019
+    },
+    {
+      "change": "code dropout 0.0 (vs 0.35), same features: unseen-code acc ICD 0.296 vs 0.348, SNOMED 0.402 vs 0.413",
+      "icd": 0.5324,
+      "kept": false,
+      "snomed": 0.5075
+    },
+    {
+      "change": "LambdaRank num_leaves 15 / 7 / 63 (dropout 0.35, no dense)",
+      "icd": "0.528 / 0.524 / 0.539",
+      "kept": false,
+      "snomed": "0.517 / 0.502 / 0.496"
+    },
+    {
+      "change": "+ letter/digit split view, + static-vector dense channel (spaCy en_core_web_lg), default leaves 31",
+      "icd": 0.5459,
+      "kept": true,
+      "snomed": 0.4888
+    },
+    {
+      "change": "  same, num_leaves 15 / 63 (63 + min_child 5 selected: best min on val)",
+      "icd": "0.537 / 0.544",
+      "kept": true,
+      "snomed": "0.509 / 0.521"
+    },
+    {
+      "change": "+ best_is_first_desc feature; full protocol run (frozen config)",
+      "icd": 0.5503,
+      "kept": true,
+      "snomed": 0.5131
+    },
+    {
+      "change": "context-support bug fix (expansion tokens no longer excluded from context overlap), + abbr_ctx_support, + chunk_overlap, + ICD category training-frequency prior; hard cases 8/15 -> 9/15; code-disjoint ICD 0.336->0.334, SNOMED 0.462->0.466",
+      "icd": 0.5347,
+      "kept": true,
+      "snomed": 0.5112
+    }
+  ]
+}

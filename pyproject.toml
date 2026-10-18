@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "termmap"
+version = "1.0.0"
+description = "Clinical term mapping engine: entity + context -> one ICD-10-CM code and one SNOMED CT US concept"
+requires-python = ">=3.10"
+dependencies = ["numpy", "pandas", "scipy", "scikit-learn", "lightgbm", "rapidfuzz", "openpyxl", "PyYAML"]
+
+[project.optional-dependencies]
+report = ["matplotlib", "reportlab"]
+static = ["spacy"]
+dense = ["sentence-transformers", "faiss-cpu", "huggingface_hub"]
+test = ["pytest"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "tests"]

@@ -1,0 +1,1518 @@
+{
+  "code_disjoint": {
+    "heuristics": {
+      "bm25_only": {
+        "ICD10CM": {
+          "overall": 0.1654,
+          "unseen": 0.1654
+        },
+        "SNOMEDCT_US": {
+          "overall": 0.3341,
+          "unseen": 0.3341
+        }
+      },
+      "char_only": {
+        "ICD10CM": {
+          "overall": 0.2105,
+          "unseen": 0.2105
+        },
+        "SNOMEDCT_US": {
+          "overall": 0.4039,
+          "unseen": 0.4039
+        }
+      },
+      "dense_only": {
+        "ICD10CM": {
+          "overall": 0.1855,
+          "unseen": 0.1855
+        },
+        "SNOMEDCT_US": {
+          "overall": 0.2642,
+          "unseen": 0.2642
+        }
+      },
+      "exact_fuzzy": {
+        "ICD10CM": {
+          "overall": 0.1604,
+          "unseen": 0.1604
+        },
+        "SNOMEDCT_US": {
+          "overall": 0.2249,
+          "unseen": 0.2249
+        }
+      },
+      "hybrid_sum": {
+        "ICD10CM": {
+          "overall": 0.1955,
+          "unseen": 0.1955
+        },
+        "SNOMEDCT_US": {
+          "overall": 0.2293,
+          "unseen": 0.2293
+        }
+      },
+      "rrf_only": {
+        "ICD10CM": {
+          "overall": 0.208,
+          "unseen": 0.208
+        },
+        "SNOMEDCT_US": {
+          "overall": 0.321,
+          "unseen": 0.321
+        }
+      }
+    },
+    "main_variant": "stage1",
+    "metrics": {
+      "ICD10CM": {
+        "abbreviation_terms": {
+          "acc": 0.264,
+          "n": 197
+        },
+        "by_bucket": {
+          "0": {
+            "acc": 0.3183,
+            "n": 399
+          }
+        },
+        "by_chapter_letter": {
+          "B": {
+            "acc": 1.0,
+            "n": 1
+          },
+          "C": {
+            "acc": 0.3103,
+            "n": 29
+          },
+          "D": {
+            "acc": 0.6667,
+            "n": 3
+          },
+          "E": {
+            "acc": 0.4706,
+            "n": 17
+          },
+          "F": {
+            "acc": 0.125,
+            "n": 8
+          },
+          "G": {
+            "acc": 0.5714,
+            "n": 14
+          },
+          "H": {
+            "acc": 0.2222,
+            "n": 9
+          },
+          "I": {
+            "acc": 0.225,
+            "n": 40
+          },
+          "J": {
+            "acc": 0.4286,
+            "n": 7
+          },
+          "K": {
+            "acc": 0.1667,
+            "n": 12
+          },
+          "L": {
+            "acc": 0.5263,
+            "n": 19
+          },
+          "M": {
+            "acc": 0.2093,
+            "n": 43
+          },
+          "N": {
+            "acc": 0.5625,
+            "n": 16
+          },
+          "Q": {
+            "acc": 0.5,
+            "n": 2
+          },
+          "R": {
+            "acc": 0.3143,
+            "n": 140
+          },
+          "S": {
+            "acc": 0.3846,
+            "n": 13
+          },
+          "T": {
+            "acc": 0.0,
+            "n": 11
+          },
+          "W": {
+            "acc": 0.0,
+            "n": 3
+          },
+          "X": {
+            "acc": 0.0,
+            "n": 1
+          },
+          "Z": {
+            "acc": 0.3636,
+            "n": 11
+          }
+        },
+        "by_entity_len": {
+          "1": {
+            "acc": 0.4419,
+            "n": 86
+          },
+          "2-3": {
+            "acc": 0.3228,
+            "n": 189
+          },
+          "4+": {
+            "acc": 0.2258,
+            "n": 124
+          }
+        },
+        "chapters_below_overall": [
+          "C",
+          "I",
+          "K",
+          "M",
+          "R",
+          "T"
+        ],
+        "ci95": {
+          "acc": 0.3183,
+          "hi": 0.3634,
+          "lo": 0.2757,
+          "n": 399
+        },
+        "clean_terms": {
+          "acc": 0.3369,
+          "n": 374
+        },
+        "coverage_vs_accuracy": {
+          "0.0": {
+            "acc": 0.3183,
+            "coverage": 1.0
+          },
+          "0.3": {
+            "acc": 0.3613,
+            "coverage": 0.8672
+          },
+          "0.5": {
+            "acc": 0.4231,
+            "coverage": 0.6516
+          },
+          "0.7": {
+            "acc": 0.4794,
+            "coverage": 0.4862
+          },
+          "0.9": {
+            "acc": 0.5913,
+            "coverage": 0.2882
+          }
+        },
+        "ece": 0.3321,
+        "ece_uncalibrated": 0.3321,
+        "empty_context": {
+          "acc": null,
+          "n": 0
+        },
+        "errors": {
+          "rank_miss": 158,
+          "retrieval_miss": 114,
+          "total": 272
+        },
+        "fallback_rows": 0,
+        "gold_invalid_rows": 0,
+        "history_terms": {
+          "acc": 0.4615,
+          "n": 13
+        },
+        "negated_terms": {
+          "acc": 0.4265,
+          "n": 68
+        },
+        "noisy_oov_terms": {
+          "acc": 0.04,
+          "n": 25
+        },
+        "over_coding_rate": 0.0075,
+        "overall": {
+          "acc": 0.3183,
+          "n": 399
+        },
+        "pool_recall": 0.7143,
+        "recall_bm25_channel": {
+          "@1": 0.1805,
+          "@10": 0.3358,
+          "@100": 0.411,
+          "@20": 0.386,
+          "@200": 0.411,
+          "@5": 0.2907,
+          "@50": 0.411
+        },
+        "recall_char_channel": {
+          "@1": 0.2105,
+          "@10": 0.411,
+          "@100": 0.4837,
+          "@20": 0.4586,
+          "@200": 0.4837,
+          "@5": 0.3559,
+          "@50": 0.4837
+        },
+        "recall_first_stage": {
+          "@1": 0.1955,
+          "@10": 0.4386,
+          "@100": 0.6617,
+          "@20": 0.5263,
+          "@200": 0.7143,
+          "@5": 0.3684,
+          "@50": 0.6065
+        },
+        "same_category": 0.5138,
+        "same_category_other_branch_rate": 0.1704,
+        "same_letter": 0.7118,
+        "uncertain_terms": {
+          "acc": 0.1667,
+          "n": 6
+        },
+        "under_coding_rate": 0.0175,
+        "unseen_code": {
+          "acc": 0.3183,
+          "n": 399
+        },
+        "with_context": {
+          "acc": 0.3183,
+          "n": 399
+        }
+      },
+      "SNOMEDCT_US": {
+        "abbreviation_terms": {
+          "acc": 0.4195,
+          "n": 236
+        },
+        "by_bucket": {
+          "0": {
+            "acc": 0.4541,
+            "n": 458
+          }
+        },
+        "by_entity_len": {
+          "1": {
+            "acc": 0.6377,
+            "n": 69
+          },
+          "2-3": {
+            "acc": 0.4716,
+            "n": 229
+          },
+          "4+": {
+            "acc": 0.35,
+            "n": 160
+          }
+        },
+        "by_semantic_tag": {
+          "body structure": {
+            "acc": 0.0,
+            "n": 8
+          },
+          "disorder": {
+            "acc": 0.561,
+            "n": 205
+          },
+          "finding": {
+            "acc": 0.4355,
+            "n": 186
+          },
+          "morphologic abnormality": {
+            "acc": 0.3636,
+            "n": 11
+          },
+          "observable entity": {
+            "acc": 0.1429,
+            "n": 14
+          },
+          "procedure": {
+            "acc": 0.0,
+            "n": 5
+          },
+          "qualifier value": {
+            "acc": 0.1429,
+            "n": 7
+          },
+          "situation": {
+            "acc": 0.25,
+            "n": 16
+          }
+        },
+        "ci95": {
+          "acc": 0.4541,
+          "hi": 0.5022,
+          "lo": 0.4105,
+          "n": 458
+        },
+        "clean_terms": {
+          "acc": 0.4623,
+          "n": 411
+        },
+        "coverage_vs_accuracy": {
+          "0.0": {
+            "acc": 0.4541,
+            "coverage": 1.0
+          },
+          "0.3": {
+            "acc": 0.5378,
+            "coverage": 0.8079
+          },
+          "0.5": {
+            "acc": 0.6752,
+            "coverage": 0.5983
+          },
+          "0.7": {
+            "acc": 0.7619,
+            "coverage": 0.4585
+          },
+          "0.9": {
+            "acc": 0.8707,
+            "coverage": 0.321
+          }
+        },
+        "ece": 0.1748,
+        "ece_uncalibrated": 0.1748,
+        "empty_context": {
+          "acc": null,
+          "n": 0
+        },
+        "errors": {
+          "rank_miss": 153,
+          "retrieval_miss": 97,
+          "total": 250
+        },
+        "fallback_rows": 0,
+        "gold_invalid_rows": 0,
+        "history_terms": {
+          "acc": 0.5263,
+          "n": 19
+        },
+        "negated_terms": {
+          "acc": 0.4884,
+          "n": 86
+        },
+        "noisy_oov_terms": {
+          "acc": 0.383,
+          "n": 47
+        },
+        "overall": {
+          "acc": 0.4541,
+          "n": 458
+        },
+        "pool_recall": 0.7882,
+        "recall_bm25_channel": {
+          "@1": 0.3253,
+          "@10": 0.5349,
+          "@100": 0.607,
+          "@20": 0.5721,
+          "@200": 0.607,
+          "@5": 0.476,
+          "@50": 0.607
+        },
+        "recall_char_channel": {
+          "@1": 0.4039,
+          "@10": 0.6026,
+          "@100": 0.7009,
+          "@20": 0.6616,
+          "@200": 0.7009,
+          "@5": 0.5415,
+          "@50": 0.7009
+        },
+        "recall_first_stage": {
+          "@1": 0.2293,
+          "@10": 0.5502,
+          "@100": 0.7664,
+          "@20": 0.6288,
+          "@200": 0.7882,
+          "@5": 0.4585,
+          "@50": 0.7227
+        },
+        "snomed_hierarchy_distance": "not computed: no SNOMED relationships supplied",
+        "uncertain_terms": {
+          "acc": 0.7143,
+          "n": 7
+        },
+        "unseen_code": {
+          "acc": 0.4541,
+          "n": 458
+        },
+        "with_context": {
+          "acc": 0.4541,
+          "n": 458
+        }
+      },
+      "headline": {
+        "ICD10CM": 0.3183,
+        "SNOMEDCT_US": 0.4541,
+        "ci95": {
+          "headline": 0.3183,
+          "hi": 0.3634,
+          "lo": 0.2757
+        },
+        "gap_to_95": 0.6317,
+        "headline_min": 0.3183
+      }
+    },
+    "protocol": "dev pairs only (FINAL TEST excluded); pairs carrying a held-out code in either system removed from all training resources",
+    "variants": {
+      "stage1": {
+        "ICD10CM": {
+          "overall_mean": 0.3275,
+          "overall_per_seed": [
+            0.3183,
+            0.3283,
+            0.3358
+          ],
+          "overall_std": 0.0072,
+          "unseen_mean": 0.3275
+        },
+        "SNOMEDCT_US": {
+          "overall_mean": 0.4505,
+          "overall_per_seed": [
+            0.4541,
+            0.4454,
+            0.452
+          ],
+          "overall_std": 0.0037,
+          "unseen_mean": 0.4505
+        },
+        "headline_mean": 0.3275
+      },
+      "stage1_no_aug_rows": {
+        "ICD10CM": {
+          "overall_mean": 0.3225,
+          "overall_per_seed": [
+            0.3208,
+            0.3233,
+            0.3233
+          ],
+          "overall_std": 0.0012,
+          "unseen_mean": 0.3225
+        },
+        "SNOMEDCT_US": {
+          "overall_mean": 0.4439,
+          "overall_per_seed": [
+            0.4432,
+            0.4454,
+            0.4432
+          ],
+          "overall_std": 0.001,
+          "unseen_mean": 0.4439
+        },
+        "headline_mean": 0.3225
+      },
+      "stage1_no_context": {
+        "ICD10CM": {
+          "overall_mean": 0.3291,
+          "overall_per_seed": [
+            0.3308,
+            0.3308,
+            0.3258
+          ],
+          "overall_std": 0.0024,
+          "unseen_mean": 0.3291
+        },
+        "SNOMEDCT_US": {
+          "overall_mean": 0.4549,
+          "overall_per_seed": [
+            0.452,
+            0.4585,
+            0.4541
+          ],
+          "overall_std": 0.0027,
+          "unseen_mean": 0.4549
+        },
+        "headline_mean": 0.3291
+      },
+      "stage1_no_dense": {
+        "ICD10CM": {
+          "overall_mean": 0.3241,
+          "overall_per_seed": [
+            0.3283,
+            0.3258,
+            0.3183
+          ],
+          "overall_std": 0.0042,
+          "unseen_mean": 0.3241
+        },
+        "SNOMEDCT_US": {
+          "overall_mean": 0.4396,
+          "overall_per_seed": [
+            0.441,
+            0.4345,
+            0.4432
+          ],
+          "overall_std": 0.0037,
+          "unseen_mean": 0.4396
+        },
+        "headline_mean": 0.3241
+      },
+      "stage1_no_hierarchy": {
+        "ICD10CM": {
+          "overall_mean": 0.274,
+          "overall_per_seed": [
+            0.2732,
+            0.2682,
+            0.2807
+          ],
+          "overall_std": 0.0051,
+          "unseen_mean": 0.274
+        },
+        "SNOMEDCT_US": {
+          "overall_mean": 0.4505,
+          "overall_per_seed": [
+            0.4541,
+            0.4454,
+            0.452
+          ],
+          "overall_std": 0.0037,
+          "unseen_mean": 0.4505
+        },
+        "headline_mean": 0.274
+      },
+      "stage1_no_priors": {
+        "ICD10CM": {
+          "overall_mean": 0.3325,
+          "overall_per_seed": [
+            0.3383,
+            0.3233,
+            0.3358
+          ],
+          "overall_std": 0.0066,
+          "unseen_mean": 0.3325
+        },
+        "SNOMEDCT_US": {
+          "overall_mean": 0.4498,
+          "overall_per_seed": [
+            0.4563,
+            0.4476,
+            0.4454
+          ],
+          "overall_std": 0.0047,
+          "unseen_mean": 0.4498
+        },
+        "headline_mean": 0.3325
+      },
+      "stage1_no_qualifier": {
+        "ICD10CM": {
+          "overall_mean": 0.3049,
+          "overall_per_seed": [
+            0.2982,
+            0.3083,
+            0.3083
+          ],
+          "overall_std": 0.0048,
+          "unseen_mean": 0.3049
+        },
+        "SNOMEDCT_US": {
+          "overall_mean": 0.436,
+          "overall_per_seed": [
+            0.4345,
+            0.4345,
+            0.4389
+          ],
+          "overall_std": 0.0021,
+          "unseen_mean": 0.436
+        },
+        "headline_mean": 0.3049
+      },
+      "stage1_no_rrf": {
+        "ICD10CM": {
+          "overall_mean": 0.3225,
+          "overall_per_seed": [
+            0.3233,
+            0.3208,
+            0.3233
+          ],
+          "overall_std": 0.0012,
+          "unseen_mean": 0.3225
+        },
+        "SNOMEDCT_US": {
+          "overall_mean": 0.4498,
+          "overall_per_seed": [
+            0.4498,
+            0.4476,
+            0.452
+          ],
+          "overall_std": 0.0018,
+          "unseen_mean": 0.4498
+        },
+        "headline_mean": 0.3225
+      },
+      "stage1_no_training_neighbours": {
+        "ICD10CM": {
+          "overall_mean": 0.3258,
+          "overall_per_seed": [
+            0.3233,
+            0.3333,
+            0.3208
+          ],
+          "overall_std": 0.0054,
+          "unseen_mean": 0.3258
+        },
+        "SNOMEDCT_US": {
+          "overall_mean": 0.449,
+          "overall_per_seed": [
+            0.4476,
+            0.4432,
+            0.4563
+          ],
+          "overall_std": 0.0054,
+          "unseen_mean": 0.449
+        },
+        "headline_mean": 0.3258
+      },
+      "stage2": {
+        "ICD10CM": {
+          "overall_mean": 0.3266,
+          "overall_per_seed": [
+            0.3283,
+            0.3208,
+            0.3308
+          ],
+          "overall_std": 0.0042,
+          "unseen_mean": 0.3266
+        },
+        "SNOMEDCT_US": {
+          "overall_mean": 0.4454,
+          "overall_per_seed": [
+            0.4432,
+            0.441,
+            0.452
+          ],
+          "overall_std": 0.0048,
+          "unseen_mean": 0.4454
+        },
+        "headline_mean": 0.3266
+      },
+      "stage2_calibrated": {
+        "ICD10CM": {
+          "overall_mean": 0.3266,
+          "overall_per_seed": [
+            0.3283,
+            0.3208,
+            0.3308
+          ],
+          "overall_std": 0.0042,
+          "unseen_mean": 0.3266
+        },
+        "SNOMEDCT_US": {
+          "overall_mean": 0.4454,
+          "overall_per_seed": [
+            0.4432,
+            0.441,
+            0.452
+          ],
+          "overall_std": 0.0048,
+          "unseen_mean": 0.4454
+        },
+        "headline_mean": 0.3266
+      },
+      "stage2_icd_only_calibrated": {
+        "ICD10CM": {
+          "overall_mean": 0.3266,
+          "overall_per_seed": [
+            0.3283,
+            0.3208,
+            0.3308
+          ],
+          "overall_std": 0.0042,
+          "unseen_mean": 0.3266
+        },
+        "SNOMEDCT_US": {
+          "overall_mean": 0.4505,
+          "overall_per_seed": [
+            0.4541,
+            0.4454,
+            0.452
+          ],
+          "overall_std": 0.0037,
+          "unseen_mean": 0.4505
+        },
+        "headline_mean": 0.3266
+      }
+    }
+  },
+  "config_hash": "ada5a751e9e7db04",
+  "mode": {
+    "cross_encoder": "disabled",
+    "crosswalk": "not supplied",
+    "dense": "static_vectors:en_core_web_lg",
+    "lexical": true,
+    "reranker": true,
+    "snomed_hierarchy": "not supplied (no IS-A features)",
+    "training_neighbours": true
+  },
+  "protocol": [
+    "",
+    "Protocol",
+    "  * model selection on the group-validation split; code-disjoint = long-tail development metric;",
+    "  * FINAL TEST split (reports/splits.json:test_pair_ids) is excluded from every training resource and",
+    "    from both development experiments; it is scored once with the frozen configuration;",
+    "  * reranker seeds from rerank.seeds -> mean +- std; bootstrap 95% CIs (1000 resamples) on the",
+    "    primary seed; differences < 2 points are treated as noise unless CIs separate;",
+    "  * final model: refit on train+val+test with the frozen configuration (disclosed).",
+    "All long stages (feature tables) are cached on disk with hash keys and resume after interruption."
+  ],
+  "seeds": [
+    13,
+    14,
+    15
+  ],
+  "val": {
+    "heuristics": {
+      "bm25_only": {
+        "ICD10CM": {
+          "overall": 0.1723,
+          "unseen": 0.1875
+        },
+        "SNOMEDCT_US": {
+          "overall": 0.3545,
+          "unseen": 0.3737
+        }
+      },
+      "char_only": {
+        "ICD10CM": {
+          "overall": 0.226,
+          "unseen": 0.2188
+        },
+        "SNOMEDCT_US": {
+          "overall": 0.403,
+          "unseen": 0.3875
+        }
+      },
+      "dense_only": {
+        "ICD10CM": {
+          "overall": 0.1857,
+          "unseen": 0.1484
+        },
+        "SNOMEDCT_US": {
+          "overall": 0.2892,
+          "unseen": 0.2872
+        }
+      },
+      "exact_fuzzy": {
+        "ICD10CM": {
+          "overall": 0.1767,
+          "unseen": 0.1719
+        },
+        "SNOMEDCT_US": {
+          "overall": 0.2705,
+          "unseen": 0.2803
+        }
+      },
+      "hybrid_sum": {
+        "ICD10CM": {
+          "overall": 0.3289,
+          "unseen": 0.1797
+        },
+        "SNOMEDCT_US": {
+          "overall": 0.3246,
+          "unseen": 0.2457
+        }
+      },
+      "rrf_only": {
+        "ICD10CM": {
+          "overall": 0.2438,
+          "unseen": 0.2266
+        },
+        "SNOMEDCT_US": {
+          "overall": 0.3209,
+          "unseen": 0.301
+        }
+      }
+    },
+    "main_variant": "stage1",
+    "metrics": {
+      "ICD10CM": {
+        "abbreviation_terms": {
+          "acc": 0.5143,
+          "n": 210
+        },
+        "by_bucket": {
+          "0": {
+            "acc": 0.3906,
+            "n": 128
+          },
+          "1": {
+            "acc": 0.5926,
+            "n": 81
+          },
+          "2-5": {
+            "acc": 0.5849,
+            "n": 159
+          },
+          "6+": {
+            "acc": 0.6709,
+            "n": 79
+          }
+        },
+        "by_chapter_letter": {
+          "A": {
+            "acc": 0.0,
+            "n": 3
+          },
+          "B": {
+            "acc": 0.5,
+            "n": 4
+          },
+          "C": {
+            "acc": 0.4545,
+            "n": 11
+          },
+          "D": {
+            "acc": 0.5,
+            "n": 2
+          },
+          "E": {
+            "acc": 0.5517,
+            "n": 29
+          },
+          "F": {
+            "acc": 0.4545,
+            "n": 11
+          },
+          "G": {
+            "acc": 0.9167,
+            "n": 12
+          },
+          "H": {
+            "acc": 0.5882,
+            "n": 17
+          },
+          "I": {
+            "acc": 0.5179,
+            "n": 56
+          },
+          "J": {
+            "acc": 0.6071,
+            "n": 28
+          },
+          "K": {
+            "acc": 0.7143,
+            "n": 14
+          },
+          "L": {
+            "acc": 0.5882,
+            "n": 17
+          },
+          "M": {
+            "acc": 0.4906,
+            "n": 53
+          },
+          "N": {
+            "acc": 0.5263,
+            "n": 19
+          },
+          "O": {
+            "acc": 0.0,
+            "n": 1
+          },
+          "Q": {
+            "acc": 0.6667,
+            "n": 3
+          },
+          "R": {
+            "acc": 0.6167,
+            "n": 120
+          },
+          "S": {
+            "acc": 0.3333,
+            "n": 9
+          },
+          "T": {
+            "acc": 0.0,
+            "n": 9
+          },
+          "U": {
+            "acc": 0.0,
+            "n": 1
+          },
+          "W": {
+            "acc": 0.6667,
+            "n": 3
+          },
+          "X": {
+            "acc": 0.0,
+            "n": 1
+          },
+          "Z": {
+            "acc": 0.4583,
+            "n": 24
+          }
+        },
+        "by_entity_len": {
+          "1": {
+            "acc": 0.6806,
+            "n": 72
+          },
+          "2-3": {
+            "acc": 0.5236,
+            "n": 233
+          },
+          "4+": {
+            "acc": 0.5141,
+            "n": 142
+          }
+        },
+        "chapters_below_overall": [
+          "C",
+          "F",
+          "I",
+          "M",
+          "N",
+          "Z"
+        ],
+        "ci95": {
+          "acc": 0.5459,
+          "hi": 0.5973,
+          "lo": 0.4966,
+          "n": 447
+        },
+        "clean_terms": {
+          "acc": 0.5556,
+          "n": 414
+        },
+        "coverage_vs_accuracy": {
+          "0.0": {
+            "acc": 0.5459,
+            "coverage": 1.0
+          },
+          "0.3": {
+            "acc": 0.5965,
+            "coverage": 0.8926
+          },
+          "0.5": {
+            "acc": 0.6718,
+            "coverage": 0.7293
+          },
+          "0.7": {
+            "acc": 0.7354,
+            "coverage": 0.5749
+          },
+          "0.9": {
+            "acc": 0.8294,
+            "coverage": 0.3803
+          }
+        },
+        "ece": 0.1615,
+        "ece_uncalibrated": 0.1615,
+        "empty_context": {
+          "acc": null,
+          "n": 0
+        },
+        "errors": {
+          "rank_miss": 127,
+          "retrieval_miss": 76,
+          "total": 203
+        },
+        "fallback_rows": 0,
+        "gold_invalid_rows": 0,
+        "history_terms": {
+          "acc": 0.5263,
+          "n": 19
+        },
+        "negated_terms": {
+          "acc": 0.5867,
+          "n": 75
+        },
+        "noisy_oov_terms": {
+          "acc": 0.4242,
+          "n": 33
+        },
+        "over_coding_rate": 0.0112,
+        "overall": {
+          "acc": 0.5459,
+          "n": 447
+        },
+        "pool_recall": 0.83,
+        "recall_bm25_channel": {
+          "@1": 0.1879,
+          "@10": 0.3669,
+          "@100": 0.4609,
+          "@20": 0.4116,
+          "@200": 0.4609,
+          "@5": 0.3244,
+          "@50": 0.4609
+        },
+        "recall_char_channel": {
+          "@1": 0.226,
+          "@10": 0.4362,
+          "@100": 0.5615,
+          "@20": 0.4877,
+          "@200": 0.5615,
+          "@5": 0.3937,
+          "@50": 0.5615
+        },
+        "recall_first_stage": {
+          "@1": 0.3289,
+          "@10": 0.604,
+          "@100": 0.7808,
+          "@20": 0.6711,
+          "@200": 0.83,
+          "@5": 0.5414,
+          "@50": 0.7271
+        },
+        "same_category": 0.6376,
+        "same_category_other_branch_rate": 0.0761,
+        "same_letter": 0.7763,
+        "uncertain_terms": {
+          "acc": 0.4167,
+          "n": 12
+        },
+        "under_coding_rate": 0.0045,
+        "unseen_code": {
+          "acc": 0.3906,
+          "n": 128
+        },
+        "with_context": {
+          "acc": 0.5459,
+          "n": 447
+        }
+      },
+      "SNOMEDCT_US": {
+        "abbreviation_terms": {
+          "acc": 0.4375,
+          "n": 240
+        },
+        "by_bucket": {
+          "0": {
+            "acc": 0.4187,
+            "n": 289
+          },
+          "1": {
+            "acc": 0.5983,
+            "n": 117
+          },
+          "2-5": {
+            "acc": 0.6042,
+            "n": 96
+          },
+          "6+": {
+            "acc": 0.6471,
+            "n": 34
+          }
+        },
+        "by_entity_len": {
+          "1": {
+            "acc": 0.6105,
+            "n": 95
+          },
+          "2-3": {
+            "acc": 0.5273,
+            "n": 275
+          },
+          "4+": {
+            "acc": 0.4096,
+            "n": 166
+          }
+        },
+        "by_semantic_tag": {
+          "disorder": {
+            "acc": 0.5863,
+            "n": 249
+          },
+          "finding": {
+            "acc": 0.5172,
+            "n": 203
+          },
+          "morphologic abnormality": {
+            "acc": 0.381,
+            "n": 21
+          },
+          "observable entity": {
+            "acc": 0.1667,
+            "n": 12
+          },
+          "procedure": {
+            "acc": 0.0,
+            "n": 7
+          },
+          "qualifier value": {
+            "acc": 0.2857,
+            "n": 7
+          },
+          "situation": {
+            "acc": 0.1111,
+            "n": 18
+          }
+        },
+        "ci95": {
+          "acc": 0.5056,
+          "hi": 0.5504,
+          "lo": 0.4646,
+          "n": 536
+        },
+        "clean_terms": {
+          "acc": 0.5207,
+          "n": 484
+        },
+        "coverage_vs_accuracy": {
+          "0.0": {
+            "acc": 0.5056,
+            "coverage": 1.0
+          },
+          "0.3": {
+            "acc": 0.5768,
+            "coverage": 0.8507
+          },
+          "0.5": {
+            "acc": 0.679,
+            "coverage": 0.6567
+          },
+          "0.7": {
+            "acc": 0.7993,
+            "coverage": 0.5019
+          },
+          "0.9": {
+            "acc": 0.8933,
+            "coverage": 0.3321
+          }
+        },
+        "ece": 0.1619,
+        "ece_uncalibrated": 0.1619,
+        "empty_context": {
+          "acc": 0.0,
+          "n": 1
+        },
+        "errors": {
+          "rank_miss": 178,
+          "retrieval_miss": 87,
+          "total": 265
+        },
+        "fallback_rows": 0,
+        "gold_invalid_rows": 0,
+        "history_terms": {
+          "acc": 0.3,
+          "n": 20
+        },
+        "negated_terms": {
+          "acc": 0.4712,
+          "n": 104
+        },
+        "noisy_oov_terms": {
+          "acc": 0.3654,
+          "n": 52
+        },
+        "overall": {
+          "acc": 0.5056,
+          "n": 536
+        },
+        "pool_recall": 0.8377,
+        "recall_bm25_channel": {
+          "@1": 0.3582,
+          "@10": 0.5019,
+          "@100": 0.6007,
+          "@20": 0.5466,
+          "@200": 0.6007,
+          "@5": 0.4646,
+          "@50": 0.6007
+        },
+        "recall_char_channel": {
+          "@1": 0.403,
+          "@10": 0.6138,
+          "@100": 0.7052,
+          "@20": 0.6549,
+          "@200": 0.7052,
+          "@5": 0.5541,
+          "@50": 0.7052
+        },
+        "recall_first_stage": {
+          "@1": 0.3246,
+          "@10": 0.6175,
+          "@100": 0.8134,
+          "@20": 0.6679,
+          "@200": 0.8377,
+          "@5": 0.5541,
+          "@50": 0.7537
+        },
+        "snomed_hierarchy_distance": "not computed: no SNOMED relationships supplied",
+        "uncertain_terms": {
+          "acc": 0.4286,
+          "n": 14
+        },
+        "unseen_code": {
+          "acc": 0.4187,
+          "n": 289
+        },
+        "with_context": {
+          "acc": 0.5065,
+          "n": 535
+        }
+      },
+      "headline": {
+        "ICD10CM": 0.5459,
+        "SNOMEDCT_US": 0.5056,
+        "ci95": {
+          "headline": 0.5056,
+          "hi": 0.5429,
+          "lo": 0.4627
+        },
+        "gap_to_95": 0.4444,
+        "headline_min": 0.5056
+      }
+    },
+    "variants": {
+      "stage1": {
+        "ICD10CM": {
+          "overall_mean": 0.5414,
+          "overall_per_seed": [
+            0.5459,
+            0.5459,
+            0.5324
+          ],
+          "overall_std": 0.0064,
+          "unseen_mean": 0.375
+        },
+        "SNOMEDCT_US": {
+          "overall_mean": 0.5044,
+          "overall_per_seed": [
+            0.5056,
+            0.5056,
+            0.5019
+          ],
+          "overall_std": 0.0017,
+          "unseen_mean": 0.4152
+        },
+        "headline_mean": 0.5044
+      },
+      "stage1_no_aug_rows": {
+        "ICD10CM": {
+          "overall_mean": 0.5436,
+          "overall_per_seed": [
+            0.5481,
+            0.5391,
+            0.5436
+          ],
+          "overall_std": 0.0037,
+          "unseen_mean": 0.3724
+        },
+        "SNOMEDCT_US": {
+          "overall_mean": 0.5,
+          "overall_per_seed": [
+            0.5019,
+            0.4981,
+            0.5
+          ],
+          "overall_std": 0.0016,
+          "unseen_mean": 0.4152
+        },
+        "headline_mean": 0.5
+      },
+      "stage1_no_context": {
+        "ICD10CM": {
+          "overall_mean": 0.5466,
+          "overall_per_seed": [
+            0.5526,
+            0.5414,
+            0.5459
+          ],
+          "overall_std": 0.0046,
+          "unseen_mean": 0.3802
+        },
+        "SNOMEDCT_US": {
+          "overall_mean": 0.4938,
+          "overall_per_seed": [
+            0.4925,
+            0.4981,
+            0.4907
+          ],
+          "overall_std": 0.0032,
+          "unseen_mean": 0.4083
+        },
+        "headline_mean": 0.4938
+      },
+      "stage1_no_dense": {
+        "ICD10CM": {
+          "overall_mean": 0.5399,
+          "overall_per_seed": [
+            0.5391,
+            0.5391,
+            0.5414
+          ],
+          "overall_std": 0.0011,
+          "unseen_mean": 0.3776
+        },
+        "SNOMEDCT_US": {
+          "overall_mean": 0.5019,
+          "overall_per_seed": [
+            0.5019,
+            0.5,
+            0.5037
+          ],
+          "overall_std": 0.0015,
+          "unseen_mean": 0.4164
+        },
+        "headline_mean": 0.5019
+      },
+      "stage1_no_hierarchy": {
+        "ICD10CM": {
+          "overall_mean": 0.5153,
+          "overall_per_seed": [
+            0.5078,
+            0.5078,
+            0.5302
+          ],
+          "overall_std": 0.0106,
+          "unseen_mean": 0.3099
+        },
+        "SNOMEDCT_US": {
+          "overall_mean": 0.5044,
+          "overall_per_seed": [
+            0.5056,
+            0.5056,
+            0.5019
+          ],
+          "overall_std": 0.0017,
+          "unseen_mean": 0.4152
+        },
+        "headline_mean": 0.5044
+      },
+      "stage1_no_priors": {
+        "ICD10CM": {
+          "overall_mean": 0.5429,
+          "overall_per_seed": [
+            0.5436,
+            0.5414,
+            0.5436
+          ],
+          "overall_std": 0.001,
+          "unseen_mean": 0.3932
+        },
+        "SNOMEDCT_US": {
+          "overall_mean": 0.505,
+          "overall_per_seed": [
+            0.5093,
+            0.5075,
+            0.4981
+          ],
+          "overall_std": 0.0049,
+          "unseen_mean": 0.4245
+        },
+        "headline_mean": 0.505
+      },
+      "stage1_no_qualifier": {
+        "ICD10CM": {
+          "overall_mean": 0.519,
+          "overall_per_seed": [
+            0.5235,
+            0.5213,
+            0.5123
+          ],
+          "overall_std": 0.0048,
+          "unseen_mean": 0.3307
+        },
+        "SNOMEDCT_US": {
+          "overall_mean": 0.4838,
+          "overall_per_seed": [
+            0.4925,
+            0.4795,
+            0.4795
+          ],
+          "overall_std": 0.0061,
+          "unseen_mean": 0.3944
+        },
+        "headline_mean": 0.4838
+      },
+      "stage1_no_rrf": {
+        "ICD10CM": {
+          "overall_mean": 0.5384,
+          "overall_per_seed": [
+            0.5347,
+            0.5481,
+            0.5324
+          ],
+          "overall_std": 0.0069,
+          "unseen_mean": 0.3646
+        },
+        "SNOMEDCT_US": {
+          "overall_mean": 0.5037,
+          "overall_per_seed": [
+            0.5019,
+            0.5093,
+            0.5
+          ],
+          "overall_std": 0.004,
+          "unseen_mean": 0.4152
+        },
+        "headline_mean": 0.5037
+      },
+      "stage1_no_training_neighbours": {
+        "ICD10CM": {
+          "overall_mean": 0.5123,
+          "overall_per_seed": [
+            0.5078,
+            0.5145,
+            0.5145
+          ],
+          "overall_std": 0.0032,
+          "unseen_mean": 0.3776
+        },
+        "SNOMEDCT_US": {
+          "overall_mean": 0.4894,
+          "overall_per_seed": [
+            0.4963,
+            0.4907,
+            0.4813
+          ],
+          "overall_std": 0.0062,
+          "unseen_mean": 0.4083
+        },
+        "headline_mean": 0.4894
+      },
+      "stage2": {
+        "ICD10CM": {
+          "overall_mean": 0.5667,
+          "overall_per_seed": [
+            0.5682,
+            0.557,
+            0.5749
+          ],
+          "overall_std": 0.0074,
+          "unseen_mean": 0.401
+        },
+        "SNOMEDCT_US": {
+          "overall_mean": 0.4938,
+          "overall_per_seed": [
+            0.4963,
+            0.4888,
+            0.4963
+          ],
+          "overall_std": 0.0035,
+          "unseen_mean": 0.4106
+        },
+        "headline_mean": 0.4938
+      },
+      "stage2_calibrated": {
+        "ICD10CM": {
+          "overall_mean": 0.5667,
+          "overall_per_seed": [
+            0.5682,
+            0.557,
+            0.5749
+          ],
+          "overall_std": 0.0074,
+          "unseen_mean": 0.401
+        },
+        "SNOMEDCT_US": {
+          "overall_mean": 0.4938,
+          "overall_per_seed": [
+            0.4963,
+            0.4888,
+            0.4963
+          ],
+          "overall_std": 0.0035,
+          "unseen_mean": 0.4106
+        },
+        "headline_mean": 0.4938
+      }
+    }
+  }
+}

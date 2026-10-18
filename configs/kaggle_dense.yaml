@@ -1,0 +1,19 @@
+# Kaggle / GPU overlay (Step 1-4). NOT RUN in the build sandbox (no GPU, no Hugging Face access).
+# Usage: python scripts/train.py --config configs/kaggle_dense.yaml --tag kaggle_dense
+# Prereq: python scripts/setup_resources.py --download-dense --only thenlper/gte-base,cambridgeltl/SapBERT-from-PubMedBERT-fulltext,FremyCompany/BioLORD-2023,BAAI/bge-m3
+model_path: models/final.pkl
+retrieval:
+  max_candidates: 250            # larger pool once dense channels lift recall (report latency cost)
+dense:
+  enabled: true                  # keeps the static spaCy channel as feature prefix "dense_"
+  backend: static_vectors
+  models:                        # each adds features dense_<name>_<view> and a resumable embedding cache
+    - {name: gte, model_id: thenlper/gte-base, model_path: resources/models/gte-base, batch_size: 512, top_k: 100, context_view: true}
+    - {name: sapbert, model_id: cambridgeltl/SapBERT-from-PubMedBERT-fulltext, model_path: resources/models/sapbert, pooling: cls, batch_size: 512, top_k: 100, context_view: false, max_seq_length: 32}
+    # - {name: medcpt, model_id: ncbi/MedCPT-Query-Encoder, model_path: resources/models/medcpt-query, doc_model_path: resources/models/medcpt-article, pooling: cls, top_k: 100}
+    - {name: biolord, model_id: FremyCompany/BioLORD-2023, model_path: resources/models/biolord-2023, batch_size: 512, top_k: 100, context_view: true}
+    - {name: bgem3, model_id: BAAI/bge-m3, model_path: resources/models/bge-m3, batch_size: 256, top_k: 100, context_view: true, max_seq_length: 64}
+cross_encoder:
+  enabled: false                 # set true after scripts/train_cross_encoder.py has written the tables
+  model_path: models/cross_encoder/final/final
+  top_n: 30

@@ -1,0 +1,45 @@
+{
+  "batch": {
+    "n_terms": 576,
+    "seconds": 96.23,
+    "terms_per_second_both_systems": 5.99
+  },
+  "gpu_mode": "NOT RUN (no GPU in build environment)",
+  "hardware": {
+    "cpu_count": 2,
+    "gpu": "none",
+    "num_threads_config": 2,
+    "platform": "Linux-6.18.44-fc-v139-x86_64-with-glibc2.39",
+    "python": "3.13.16"
+  },
+  "index_sizes_mb": {
+    "ICD10CM_kb-v5_60a91dffd515b77c.pkl": 31.9,
+    "ICD10CM_lex-v2_60a91dffd515b77c_1.2_0.5.pkl": 96.2,
+    "SNOMEDCT_US_kb-v5_7cd4ea3c94bcdeff.pkl": 106.2,
+    "SNOMEDCT_US_lex-v2_7cd4ea3c94bcdeff_1.2_0.5.pkl": 236.8,
+    "static-v1_ICD10CM_en_core_web_lg_60a91dffd515b77c.npy": 189.8,
+    "static-v1_SNOMEDCT_US_en_core_web_lg_7cd4ea3c94bcdeff.npy": 747.6
+  },
+  "mode": {
+    "cross_encoder": "disabled",
+    "crosswalk": "not supplied",
+    "dense": "static_vectors:en_core_web_lg",
+    "lexical": true,
+    "reranker": true,
+    "snomed_hierarchy": "not supplied (no IS-A features)",
+    "training_neighbours": true
+  },
+  "model_size_mb": 12.8,
+  "peak_rss_mb": 5544.3,
+  "per_term_model_calls": {
+    "cross_encoder_pairs": 0,
+    "dense_query_encodings": 1,
+    "llm_calls": 0
+  },
+  "resource_load_seconds_warm_cache": 8.4,
+  "single_term_latency_seconds": {
+    "median": 0.339,
+    "n": 60,
+    "p95": 0.475
+  }
+}

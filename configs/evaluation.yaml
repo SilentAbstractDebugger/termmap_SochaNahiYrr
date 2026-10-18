@@ -1,0 +1,8 @@
+# Overlay used for the submitted predictions. Identical to default.yaml except where stated.
+# Frozen after model selection on the group-validation split (see reports/metrics.json).
+model_path: models/final.pkl
+dense:
+  enabled: true         # static word-vector channel (spaCy en_core_web_lg 3.8.0). Sentence encoders were
+  backend: static_vectors  # NOT available in the build environment (no Hugging Face access).
+llm:
+  enabled: false

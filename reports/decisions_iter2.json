@@ -1,0 +1,10 @@
+{
+  "stage1": "KEEP new features (RRF, OCR views, priors, origin qualifier, ctx-vs-candidate cosine): neutral on val, +0.4..0.7 on code-disjoint",
+  "stage1_no_aug_rows": "KEEP augmentation rows: neutral on val, +0.5/+0.7 on code-disjoint",
+  "stage1_no_rrf": "KEEP RRF: removing it costs 0.3/0.1 (val) and 0.5/0.1 (CD) - within noise, kept (cheap)",
+  "stage1_no_priors": "KEEP priors (neutral within noise; required by Step 5 design)",
+  "stage1_no_context": "KEEP context (removing: val ICD +0.5, SNOMED -1.1; CD ICD +0.2, SNOMED +0.4 - noise)",
+  "stage1_no_dense": "KEEP static dense (removing costs 0.2/0.3 val, 0.3/1.1 CD)",
+  "stage2": "ICD ONLY: val ICD +2.5 (beyond 2 pts, std 0.7), CD ICD neutral; SNOMED -1.0 val, -0.5 CD -> rejected for SNOMED",
+  "stage2_calibrated": "calibration accuracy-neutral by construction; kept for ECE"
+}

@@ -1,0 +1,14 @@
+{
+  "environment": {
+    "cpu_only": true,
+    "platform": "Linux-6.18.44-fc-v139-x86_64-with-glibc2.39",
+    "python": "3.13.16"
+  },
+  "hashes": [
+    "40f601fff209d43dca18ec96ba2b2cdbdc2e275ad950280aad2ad652199a5846",
+    "40f601fff209d43dca18ec96ba2b2cdbdc2e275ad950280aad2ad652199a5846"
+  ],
+  "identical": true,
+  "result": "identical output hashes across 2 runs (2nd in a fresh process)",
+  "runs": 2
+}

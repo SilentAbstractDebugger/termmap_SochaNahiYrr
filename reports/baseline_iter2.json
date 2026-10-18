@@ -1,0 +1,1013 @@
+{
+  "code_disjoint": {
+    "heuristics": {
+      "bm25_only": {
+        "ICD10CM": {
+          "overall": 0.1654,
+          "unseen": 0.1654
+        },
+        "SNOMEDCT_US": {
+          "overall": 0.3341,
+          "unseen": 0.3341
+        }
+      },
+      "char_only": {
+        "ICD10CM": {
+          "overall": 0.2105,
+          "unseen": 0.2105
+        },
+        "SNOMEDCT_US": {
+          "overall": 0.4039,
+          "unseen": 0.4039
+        }
+      },
+      "dense_only": {
+        "ICD10CM": {
+          "overall": 0.1855,
+          "unseen": 0.1855
+        },
+        "SNOMEDCT_US": {
+          "overall": 0.2642,
+          "unseen": 0.2642
+        }
+      },
+      "exact_fuzzy": {
+        "ICD10CM": {
+          "overall": 0.1604,
+          "unseen": 0.1604
+        },
+        "SNOMEDCT_US": {
+          "overall": 0.2249,
+          "unseen": 0.2249
+        }
+      },
+      "hybrid_sum": {
+        "ICD10CM": {
+          "overall": 0.1955,
+          "unseen": 0.1955
+        },
+        "SNOMEDCT_US": {
+          "overall": 0.2293,
+          "unseen": 0.2293
+        }
+      }
+    },
+    "main_variant": "stage1",
+    "metrics": {
+      "ICD10CM": {
+        "abbreviation_terms": {
+          "acc": 0.269,
+          "n": 197
+        },
+        "by_bucket": {
+          "0": {
+            "acc": 0.3208,
+            "n": 399
+          }
+        },
+        "by_chapter_letter": {
+          "B": {
+            "acc": 1.0,
+            "n": 1
+          },
+          "C": {
+            "acc": 0.3448,
+            "n": 29
+          },
+          "D": {
+            "acc": 0.6667,
+            "n": 3
+          },
+          "E": {
+            "acc": 0.4706,
+            "n": 17
+          },
+          "F": {
+            "acc": 0.125,
+            "n": 8
+          },
+          "G": {
+            "acc": 0.6429,
+            "n": 14
+          },
+          "H": {
+            "acc": 0.2222,
+            "n": 9
+          },
+          "I": {
+            "acc": 0.2,
+            "n": 40
+          },
+          "J": {
+            "acc": 0.4286,
+            "n": 7
+          },
+          "K": {
+            "acc": 0.1667,
+            "n": 12
+          },
+          "L": {
+            "acc": 0.5789,
+            "n": 19
+          },
+          "M": {
+            "acc": 0.2558,
+            "n": 43
+          },
+          "N": {
+            "acc": 0.5,
+            "n": 16
+          },
+          "Q": {
+            "acc": 0.5,
+            "n": 2
+          },
+          "R": {
+            "acc": 0.3214,
+            "n": 140
+          },
+          "S": {
+            "acc": 0.3077,
+            "n": 13
+          },
+          "T": {
+            "acc": 0.0,
+            "n": 11
+          },
+          "W": {
+            "acc": 0.0,
+            "n": 3
+          },
+          "X": {
+            "acc": 0.0,
+            "n": 1
+          },
+          "Z": {
+            "acc": 0.1818,
+            "n": 11
+          }
+        },
+        "by_entity_len": {
+          "1": {
+            "acc": 0.4186,
+            "n": 86
+          },
+          "2-3": {
+            "acc": 0.3175,
+            "n": 189
+          },
+          "4+": {
+            "acc": 0.2581,
+            "n": 124
+          }
+        },
+        "chapters_below_overall": [
+          "I",
+          "K",
+          "M",
+          "S",
+          "T",
+          "Z"
+        ],
+        "ci95": {
+          "acc": 0.3208,
+          "hi": 0.3659,
+          "lo": 0.2782,
+          "n": 399
+        },
+        "clean_terms": {
+          "acc": 0.3396,
+          "n": 374
+        },
+        "coverage_vs_accuracy": {
+          "0.0": {
+            "acc": 0.3208,
+            "coverage": 1.0
+          },
+          "0.3": {
+            "acc": 0.3626,
+            "coverage": 0.8571
+          },
+          "0.5": {
+            "acc": 0.4207,
+            "coverage": 0.6792
+          },
+          "0.7": {
+            "acc": 0.481,
+            "coverage": 0.5263
+          },
+          "0.9": {
+            "acc": 0.5285,
+            "coverage": 0.3083
+          }
+        },
+        "ece": 0.3461,
+        "ece_uncalibrated": 0.3461,
+        "empty_context": {
+          "acc": null,
+          "n": 0
+        },
+        "errors": {
+          "rank_miss": 157,
+          "retrieval_miss": 114,
+          "total": 271
+        },
+        "fallback_rows": 0,
+        "gold_invalid_rows": 0,
+        "history_terms": {
+          "acc": 0.4615,
+          "n": 13
+        },
+        "negated_terms": {
+          "acc": 0.4118,
+          "n": 68
+        },
+        "noisy_oov_terms": {
+          "acc": 0.04,
+          "n": 25
+        },
+        "over_coding_rate": 0.005,
+        "overall": {
+          "acc": 0.3208,
+          "n": 399
+        },
+        "pool_recall": 0.7143,
+        "recall_bm25_channel": {
+          "@1": 0.1805,
+          "@10": 0.3358,
+          "@100": 0.411,
+          "@20": 0.386,
+          "@200": 0.411,
+          "@5": 0.2907,
+          "@50": 0.411
+        },
+        "recall_char_channel": {
+          "@1": 0.2105,
+          "@10": 0.411,
+          "@100": 0.4837,
+          "@20": 0.4586,
+          "@200": 0.4837,
+          "@5": 0.3559,
+          "@50": 0.4837
+        },
+        "recall_first_stage": {
+          "@1": 0.1955,
+          "@10": 0.4386,
+          "@100": 0.6617,
+          "@20": 0.5263,
+          "@200": 0.7143,
+          "@5": 0.3684,
+          "@50": 0.6065
+        },
+        "same_category": 0.5163,
+        "same_category_other_branch_rate": 0.1704,
+        "same_letter": 0.7018,
+        "uncertain_terms": {
+          "acc": 0.1667,
+          "n": 6
+        },
+        "under_coding_rate": 0.0201,
+        "unseen_code": {
+          "acc": 0.3208,
+          "n": 399
+        },
+        "with_context": {
+          "acc": 0.3208,
+          "n": 399
+        }
+      },
+      "SNOMEDCT_US": {
+        "abbreviation_terms": {
+          "acc": 0.411,
+          "n": 236
+        },
+        "by_bucket": {
+          "0": {
+            "acc": 0.441,
+            "n": 458
+          }
+        },
+        "by_entity_len": {
+          "1": {
+            "acc": 0.5942,
+            "n": 69
+          },
+          "2-3": {
+            "acc": 0.4498,
+            "n": 229
+          },
+          "4+": {
+            "acc": 0.3625,
+            "n": 160
+          }
+        },
+        "by_semantic_tag": {
+          "body structure": {
+            "acc": 0.125,
+            "n": 8
+          },
+          "disorder": {
+            "acc": 0.5415,
+            "n": 205
+          },
+          "finding": {
+            "acc": 0.4301,
+            "n": 186
+          },
+          "morphologic abnormality": {
+            "acc": 0.3636,
+            "n": 11
+          },
+          "observable entity": {
+            "acc": 0.1429,
+            "n": 14
+          },
+          "procedure": {
+            "acc": 0.0,
+            "n": 5
+          },
+          "qualifier value": {
+            "acc": 0.1429,
+            "n": 7
+          },
+          "situation": {
+            "acc": 0.125,
+            "n": 16
+          }
+        },
+        "ci95": {
+          "acc": 0.441,
+          "hi": 0.4869,
+          "lo": 0.3974,
+          "n": 458
+        },
+        "clean_terms": {
+          "acc": 0.4526,
+          "n": 411
+        },
+        "coverage_vs_accuracy": {
+          "0.0": {
+            "acc": 0.441,
+            "coverage": 1.0
+          },
+          "0.3": {
+            "acc": 0.5285,
+            "coverage": 0.8057
+          },
+          "0.5": {
+            "acc": 0.646,
+            "coverage": 0.5983
+          },
+          "0.7": {
+            "acc": 0.75,
+            "coverage": 0.4541
+          },
+          "0.9": {
+            "acc": 0.8857,
+            "coverage": 0.3057
+          }
+        },
+        "ece": 0.1883,
+        "ece_uncalibrated": 0.1883,
+        "empty_context": {
+          "acc": null,
+          "n": 0
+        },
+        "errors": {
+          "rank_miss": 159,
+          "retrieval_miss": 97,
+          "total": 256
+        },
+        "fallback_rows": 0,
+        "gold_invalid_rows": 0,
+        "history_terms": {
+          "acc": 0.4211,
+          "n": 19
+        },
+        "negated_terms": {
+          "acc": 0.4535,
+          "n": 86
+        },
+        "noisy_oov_terms": {
+          "acc": 0.3404,
+          "n": 47
+        },
+        "overall": {
+          "acc": 0.441,
+          "n": 458
+        },
+        "pool_recall": 0.7882,
+        "recall_bm25_channel": {
+          "@1": 0.3253,
+          "@10": 0.5349,
+          "@100": 0.607,
+          "@20": 0.5721,
+          "@200": 0.607,
+          "@5": 0.476,
+          "@50": 0.607
+        },
+        "recall_char_channel": {
+          "@1": 0.4039,
+          "@10": 0.6026,
+          "@100": 0.7009,
+          "@20": 0.6616,
+          "@200": 0.7009,
+          "@5": 0.5415,
+          "@50": 0.7009
+        },
+        "recall_first_stage": {
+          "@1": 0.2293,
+          "@10": 0.5502,
+          "@100": 0.7664,
+          "@20": 0.6288,
+          "@200": 0.7882,
+          "@5": 0.4585,
+          "@50": 0.7227
+        },
+        "snomed_hierarchy_distance": "not computed: no SNOMED relationships supplied",
+        "uncertain_terms": {
+          "acc": 0.5714,
+          "n": 7
+        },
+        "unseen_code": {
+          "acc": 0.441,
+          "n": 458
+        },
+        "with_context": {
+          "acc": 0.441,
+          "n": 458
+        }
+      },
+      "headline": {
+        "ICD10CM": 0.3208,
+        "SNOMEDCT_US": 0.441,
+        "ci95": {
+          "headline": 0.3208,
+          "hi": 0.3659,
+          "lo": 0.2782
+        },
+        "gap_to_95": 0.6292,
+        "headline_min": 0.3208
+      }
+    },
+    "protocol": "dev pairs only (FINAL TEST excluded); pairs carrying a held-out code in either system removed from all training resources",
+    "variants": {
+      "stage1": {
+        "ICD10CM": {
+          "overall_mean": 0.3208,
+          "overall_per_seed": [
+            0.3208,
+            0.3158,
+            0.3258
+          ],
+          "overall_std": 0.0041,
+          "unseen_mean": 0.3208
+        },
+        "SNOMEDCT_US": {
+          "overall_mean": 0.4469,
+          "overall_per_seed": [
+            0.441,
+            0.452,
+            0.4476
+          ],
+          "overall_std": 0.0045,
+          "unseen_mean": 0.4469
+        },
+        "headline_mean": 0.3208
+      }
+    }
+  },
+  "config_hash": "dc6897b9e053fe25",
+  "mode": {
+    "crosswalk": "not supplied",
+    "dense": "static_vectors:en_core_web_lg",
+    "lexical": true,
+    "reranker": true,
+    "snomed_hierarchy": "not supplied (no IS-A features)",
+    "training_neighbours": true
+  },
+  "protocol": [
+    "",
+    "Protocol",
+    "  * model selection on the group-validation split; code-disjoint = long-tail development metric;",
+    "  * FINAL TEST split (reports/splits.json:test_pair_ids) is excluded from every training resource and",
+    "    from both development experiments; it is scored once with the frozen configuration;",
+    "  * reranker seeds from rerank.seeds -> mean +- std; bootstrap 95% CIs (1000 resamples) on the",
+    "    primary seed; differences < 2 points are treated as noise unless CIs separate;",
+    "  * final model: refit on train+val+test with the frozen configuration (disclosed).",
+    "All long stages (feature tables) are cached on disk with hash keys and resume after interruption."
+  ],
+  "seeds": [
+    13,
+    14,
+    15
+  ],
+  "val": {
+    "heuristics": {
+      "bm25_only": {
+        "ICD10CM": {
+          "overall": 0.1723,
+          "unseen": 0.1875
+        },
+        "SNOMEDCT_US": {
+          "overall": 0.3545,
+          "unseen": 0.3737
+        }
+      },
+      "char_only": {
+        "ICD10CM": {
+          "overall": 0.226,
+          "unseen": 0.2188
+        },
+        "SNOMEDCT_US": {
+          "overall": 0.403,
+          "unseen": 0.3875
+        }
+      },
+      "dense_only": {
+        "ICD10CM": {
+          "overall": 0.1857,
+          "unseen": 0.1484
+        },
+        "SNOMEDCT_US": {
+          "overall": 0.2892,
+          "unseen": 0.2872
+        }
+      },
+      "exact_fuzzy": {
+        "ICD10CM": {
+          "overall": 0.1767,
+          "unseen": 0.1719
+        },
+        "SNOMEDCT_US": {
+          "overall": 0.2705,
+          "unseen": 0.2803
+        }
+      },
+      "hybrid_sum": {
+        "ICD10CM": {
+          "overall": 0.3266,
+          "unseen": 0.1797
+        },
+        "SNOMEDCT_US": {
+          "overall": 0.3246,
+          "unseen": 0.2457
+        }
+      }
+    },
+    "main_variant": "stage1",
+    "metrics": {
+      "ICD10CM": {
+        "abbreviation_terms": {
+          "acc": 0.5143,
+          "n": 210
+        },
+        "by_bucket": {
+          "0": {
+            "acc": 0.3672,
+            "n": 128
+          },
+          "1": {
+            "acc": 0.6173,
+            "n": 81
+          },
+          "2-5": {
+            "acc": 0.566,
+            "n": 159
+          },
+          "6+": {
+            "acc": 0.6962,
+            "n": 79
+          }
+        },
+        "by_chapter_letter": {
+          "A": {
+            "acc": 0.0,
+            "n": 3
+          },
+          "B": {
+            "acc": 0.75,
+            "n": 4
+          },
+          "C": {
+            "acc": 0.5455,
+            "n": 11
+          },
+          "D": {
+            "acc": 0.5,
+            "n": 2
+          },
+          "E": {
+            "acc": 0.5862,
+            "n": 29
+          },
+          "F": {
+            "acc": 0.4545,
+            "n": 11
+          },
+          "G": {
+            "acc": 0.9167,
+            "n": 12
+          },
+          "H": {
+            "acc": 0.5294,
+            "n": 17
+          },
+          "I": {
+            "acc": 0.5,
+            "n": 56
+          },
+          "J": {
+            "acc": 0.6429,
+            "n": 28
+          },
+          "K": {
+            "acc": 0.6429,
+            "n": 14
+          },
+          "L": {
+            "acc": 0.6471,
+            "n": 17
+          },
+          "M": {
+            "acc": 0.434,
+            "n": 53
+          },
+          "N": {
+            "acc": 0.6316,
+            "n": 19
+          },
+          "O": {
+            "acc": 0.0,
+            "n": 1
+          },
+          "Q": {
+            "acc": 0.6667,
+            "n": 3
+          },
+          "R": {
+            "acc": 0.6,
+            "n": 120
+          },
+          "S": {
+            "acc": 0.2222,
+            "n": 9
+          },
+          "T": {
+            "acc": 0.1111,
+            "n": 9
+          },
+          "U": {
+            "acc": 0.0,
+            "n": 1
+          },
+          "W": {
+            "acc": 0.0,
+            "n": 3
+          },
+          "X": {
+            "acc": 0.0,
+            "n": 1
+          },
+          "Z": {
+            "acc": 0.5,
+            "n": 24
+          }
+        },
+        "by_entity_len": {
+          "1": {
+            "acc": 0.6389,
+            "n": 72
+          },
+          "2-3": {
+            "acc": 0.5408,
+            "n": 233
+          },
+          "4+": {
+            "acc": 0.493,
+            "n": 142
+          }
+        },
+        "chapters_below_overall": [
+          "F",
+          "H",
+          "I",
+          "M",
+          "Z"
+        ],
+        "ci95": {
+          "acc": 0.5414,
+          "hi": 0.5928,
+          "lo": 0.4965,
+          "n": 447
+        },
+        "clean_terms": {
+          "acc": 0.5556,
+          "n": 414
+        },
+        "coverage_vs_accuracy": {
+          "0.0": {
+            "acc": 0.5414,
+            "coverage": 1.0
+          },
+          "0.3": {
+            "acc": 0.6,
+            "coverage": 0.8949
+          },
+          "0.5": {
+            "acc": 0.6769,
+            "coverage": 0.7271
+          },
+          "0.7": {
+            "acc": 0.751,
+            "coverage": 0.5749
+          },
+          "0.9": {
+            "acc": 0.8373,
+            "coverage": 0.3714
+          }
+        },
+        "ece": 0.1687,
+        "ece_uncalibrated": 0.1687,
+        "empty_context": {
+          "acc": null,
+          "n": 0
+        },
+        "errors": {
+          "rank_miss": 129,
+          "retrieval_miss": 76,
+          "total": 205
+        },
+        "fallback_rows": 0,
+        "gold_invalid_rows": 0,
+        "history_terms": {
+          "acc": 0.4211,
+          "n": 19
+        },
+        "negated_terms": {
+          "acc": 0.52,
+          "n": 75
+        },
+        "noisy_oov_terms": {
+          "acc": 0.3636,
+          "n": 33
+        },
+        "over_coding_rate": 0.0112,
+        "overall": {
+          "acc": 0.5414,
+          "n": 447
+        },
+        "pool_recall": 0.83,
+        "recall_bm25_channel": {
+          "@1": 0.1879,
+          "@10": 0.3669,
+          "@100": 0.4609,
+          "@20": 0.4116,
+          "@200": 0.4609,
+          "@5": 0.3244,
+          "@50": 0.4609
+        },
+        "recall_char_channel": {
+          "@1": 0.226,
+          "@10": 0.4362,
+          "@100": 0.5615,
+          "@20": 0.4877,
+          "@200": 0.5615,
+          "@5": 0.3937,
+          "@50": 0.5615
+        },
+        "recall_first_stage": {
+          "@1": 0.3266,
+          "@10": 0.604,
+          "@100": 0.7808,
+          "@20": 0.6711,
+          "@200": 0.83,
+          "@5": 0.5414,
+          "@50": 0.7271
+        },
+        "same_category": 0.6286,
+        "same_category_other_branch_rate": 0.0761,
+        "same_letter": 0.745,
+        "uncertain_terms": {
+          "acc": 0.5,
+          "n": 12
+        },
+        "under_coding_rate": 0.0,
+        "unseen_code": {
+          "acc": 0.3672,
+          "n": 128
+        },
+        "with_context": {
+          "acc": 0.5414,
+          "n": 447
+        }
+      },
+      "SNOMEDCT_US": {
+        "abbreviation_terms": {
+          "acc": 0.425,
+          "n": 240
+        },
+        "by_bucket": {
+          "0": {
+            "acc": 0.4118,
+            "n": 289
+          },
+          "1": {
+            "acc": 0.5641,
+            "n": 117
+          },
+          "2-5": {
+            "acc": 0.5625,
+            "n": 96
+          },
+          "6+": {
+            "acc": 0.6765,
+            "n": 34
+          }
+        },
+        "by_entity_len": {
+          "1": {
+            "acc": 0.5684,
+            "n": 95
+          },
+          "2-3": {
+            "acc": 0.5236,
+            "n": 275
+          },
+          "4+": {
+            "acc": 0.3855,
+            "n": 166
+          }
+        },
+        "by_semantic_tag": {
+          "disorder": {
+            "acc": 0.5663,
+            "n": 249
+          },
+          "finding": {
+            "acc": 0.5074,
+            "n": 203
+          },
+          "morphologic abnormality": {
+            "acc": 0.2857,
+            "n": 21
+          },
+          "observable entity": {
+            "acc": 0.25,
+            "n": 12
+          },
+          "procedure": {
+            "acc": 0.0,
+            "n": 7
+          },
+          "qualifier value": {
+            "acc": 0.2857,
+            "n": 7
+          },
+          "situation": {
+            "acc": 0.0556,
+            "n": 18
+          }
+        },
+        "ci95": {
+          "acc": 0.4888,
+          "hi": 0.528,
+          "lo": 0.4478,
+          "n": 536
+        },
+        "clean_terms": {
+          "acc": 0.5,
+          "n": 484
+        },
+        "coverage_vs_accuracy": {
+          "0.0": {
+            "acc": 0.4888,
+            "coverage": 1.0
+          },
+          "0.3": {
+            "acc": 0.5617,
+            "coverage": 0.847
+          },
+          "0.5": {
+            "acc": 0.6503,
+            "coverage": 0.6828
+          },
+          "0.7": {
+            "acc": 0.7638,
+            "coverage": 0.5056
+          },
+          "0.9": {
+            "acc": 0.9011,
+            "coverage": 0.3396
+          }
+        },
+        "ece": 0.1789,
+        "ece_uncalibrated": 0.1789,
+        "empty_context": {
+          "acc": 0.0,
+          "n": 1
+        },
+        "errors": {
+          "rank_miss": 187,
+          "retrieval_miss": 87,
+          "total": 274
+        },
+        "fallback_rows": 0,
+        "gold_invalid_rows": 0,
+        "history_terms": {
+          "acc": 0.25,
+          "n": 20
+        },
+        "negated_terms": {
+          "acc": 0.4231,
+          "n": 104
+        },
+        "noisy_oov_terms": {
+          "acc": 0.3846,
+          "n": 52
+        },
+        "overall": {
+          "acc": 0.4888,
+          "n": 536
+        },
+        "pool_recall": 0.8377,
+        "recall_bm25_channel": {
+          "@1": 0.3582,
+          "@10": 0.5019,
+          "@100": 0.6007,
+          "@20": 0.5466,
+          "@200": 0.6007,
+          "@5": 0.4646,
+          "@50": 0.6007
+        },
+        "recall_char_channel": {
+          "@1": 0.403,
+          "@10": 0.6138,
+          "@100": 0.7052,
+          "@20": 0.6549,
+          "@200": 0.7052,
+          "@5": 0.5541,
+          "@50": 0.7052
+        },
+        "recall_first_stage": {
+          "@1": 0.3246,
+          "@10": 0.6175,
+          "@100": 0.8134,
+          "@20": 0.6679,
+          "@200": 0.8377,
+          "@5": 0.556,
+          "@50": 0.7537
+        },
+        "snomed_hierarchy_distance": "not computed: no SNOMED relationships supplied",
+        "uncertain_terms": {
+          "acc": 0.4286,
+          "n": 14
+        },
+        "unseen_code": {
+          "acc": 0.4118,
+          "n": 289
+        },
+        "with_context": {
+          "acc": 0.4897,
+          "n": 535
+        }
+      },
+      "headline": {
+        "ICD10CM": 0.5414,
+        "SNOMEDCT_US": 0.4888,
+        "ci95": {
+          "headline": 0.4888,
+          "hi": 0.5261,
+          "lo": 0.4478
+        },
+        "gap_to_95": 0.4612,
+        "headline_min": 0.4888
+      }
+    },
+    "variants": {
+      "stage1": {
+        "ICD10CM": {
+          "overall_mean": 0.5429,
+          "overall_per_seed": [
+            0.5414,
+            0.5503,
+            0.5369
+          ],
+          "overall_std": 0.0056,
+          "unseen_mean": 0.3776
+        },
+        "SNOMEDCT_US": {
+          "overall_mean": 0.4963,
+          "overall_per_seed": [
+            0.4888,
+            0.5056,
+            0.4944
+          ],
+          "overall_std": 0.007,
+          "unseen_mean": 0.4152
+        },
+        "headline_mean": 0.4963
+      }
+    }
+  }
+}

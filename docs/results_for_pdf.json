@@ -1,0 +1,81 @@
+{
+  "_README": "Single source of every number in docs/TermMap_writeup.pdf and in the README results block. Edit values here, then run: python scripts/make_pdf.py . Any value equal to the string PENDING is rendered with a yellow PENDING marker. 'status' = interim | final.",
+  "status": "interim",
+  "demo_video_link": "[DEMO VIDEO LINK]",
+  "repo_link": "PENDING",
+
+  "data": {
+    "icd_rows": 2305, "snomed_rows": 2700, "pairs": 2882, "pairs_both_labels": 2123,
+    "snomed_codes_singleton_share": "72%", "icd_codes_singleton_share": "about 54%",
+    "malformed_gold": "L6.0 (2 rows), reported, never remapped",
+    "icd_dictionary_rows": 159306, "snomed_description_rows": 984585, "snomed_concepts": 382124
+  },
+
+  "results": {
+    "validation": {"icd": 0.618, "snomed": 0.565, "headline": 0.565, "seeds": 3, "ci_icd": "PENDING", "ci_snomed": "PENDING", "n_icd": "PENDING", "n_snomed": "PENDING"},
+    "code_disjoint": {"icd": 0.436, "snomed": 0.535, "headline": 0.436, "seeds": 2, "ci_icd": "[0.389, 0.484]", "ci_snomed": "[0.487, 0.581]", "n_icd": 399, "n_snomed": 458},
+    "final_test": {"icd": "PENDING", "snomed": "PENDING", "headline": "PENDING", "seeds": "PENDING", "ci_icd": "PENDING", "ci_snomed": "PENDING", "n_icd": "PENDING", "n_snomed": "PENDING"},
+    "final_refit": "PENDING",
+    "earlier_cpu_only": {"val_icd": 0.567, "val_snomed": 0.504, "cd_icd": 0.328, "cd_snomed": 0.454,
+                         "note": "CPU-only run without the four dense encoders; code-disjoint row counts differ, so not exactly like-for-like"},
+    "target": 0.95
+  },
+
+  "recall": {
+    "fused_union_val_at100": {"icd": 0.937, "snomed": 0.966},
+    "fused_union_val_at200": {"icd": 0.964, "snomed": 0.974},
+    "fused_union_cd_at200": {"icd": 0.937, "snomed": 0.954},
+    "before_dense_val_at200": "about 0.83",
+    "single_model_top1_val": {"icd": "0.20 to 0.33", "snomed": "0.43 to 0.47"},
+    "retrieval_miss_vs_rank_miss": "PENDING"
+  },
+
+  "ablations_val": [
+    ["full model (stage 1 + ICD second pass)", 0.618, 0.565],
+    ["stage 1 only (no second pass)", 0.608, 0.565],
+    ["no dense encoders", 0.570, 0.528],
+    ["no ICD hierarchy features", 0.577, 0.565],
+    ["no training neighbours", 0.595, 0.559],
+    ["no context features", 0.607, 0.567],
+    ["no RRF fusion feature", 0.612, 0.563],
+    ["no qualifier features", 0.612, 0.559],
+    ["no noise-augmented rows", 0.606, 0.568],
+    ["no learned priors", 0.617, 0.571]
+  ],
+
+  "slices_val_icd": {
+    "by_train_freq": {"unseen": 0.42, "1": 0.68, "2-5": 0.68, "6+": 0.70},
+    "abbreviation_terms": 0.60,
+    "weak_chapters": "F 0.36 (n=11); M, E and I about 0.60 to 0.64"
+  },
+  "slices_val_snomed": {"by_train_freq": "PENDING", "abbreviation_terms": "PENDING"},
+  "calibration": {"ece_val_icd": "PENDING", "ece_val_snomed": "PENDING", "coverage_at_conf_0.7": "PENDING"},
+  "failure_modes_counts": "PENDING",
+
+  "engineering": {
+    "cpu_terms_per_second": "about 6", "cpu_median_latency_s": 0.34, "cpu_peak_ram": "about 5.5 GB",
+    "gpu_terms_per_second": "PENDING", "per_term_model_calls": "none (no cross-encoder or LLM in the final model)",
+    "determinism": "identical output hashes across two runs, verified in one environment only",
+    "tests": "PENDING"
+  },
+
+  "hard_cases": [
+    ["HTN (statement)", "statement-vs-label conflict: training maps 'hypertension' and 'htn (hypertension)' to SNOMED 38341003, statement shows 59621000; training labels win"],
+    ["diabetic neuropathy (statement)", "FAIL: ICD E13.40 instead of E11.40"],
+    ["MS with mitral-valve context (synthetic)", "FAIL on the ICD side"],
+    ["RA (synthetic, joint and atrium contexts)", "FAIL on the ICD side"],
+    ["PID (synthetic, pelvic and disc contexts)", "FAIL on the ICD side for at least one sense"],
+    ["chronickidney disease stag 3 (statement)", "PENDING (final model)"],
+    ["chest pain (synthetic)", "PENDING (final model)"]
+  ],
+
+  "resources": [
+    ["thenlper/gte-base", "c078288308d8dee004ab72c6191778064285ec0c", "MIT"],
+    ["cambridgeltl/SapBERT-from-PubMedBERT-fulltext", "090663c3ae57bf35ffe4d0d468a2a88d03051a4d", "Apache-2.0"],
+    ["FremyCompany/BioLORD-2023", "167aab527b238a50ca65224e6319215d2ff4fc9f", "other: verify on model card"],
+    ["BAAI/bge-m3", "5617a9f61b028005a4858fdac845db406aefb181", "MIT"],
+    ["ncbi/MedCPT-Cross-Encoder (implemented, not evaluated)", "71caf65d4927987813984f54c284405a13fcca49", "other: verify on model card"],
+    ["spaCy en_core_web_lg 3.8.0", "release wheel", "verify on model card"],
+    ["LightGBM, scikit-learn, RapidFuzz, FAISS (exact flat index)", "pinned in requirements.txt", "MIT / BSD-3 / MIT / MIT"]
+  ]
+}

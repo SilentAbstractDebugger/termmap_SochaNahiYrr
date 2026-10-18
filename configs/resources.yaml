@@ -1,0 +1,43 @@
+files:
+  train:
+    path: data/hackathon_train.csv
+    release: HiLabs TermMap hackathon training file (proprietary, not redistributed)
+    licence: proprietary - challenge use only
+    sha256: 9884eb6963facbd79e97044cfd36ee500720437101ad6583255dfc8cd2f8dba2
+  icd:
+    path: resources/icd10cm_codes.xlsx
+    release: ICD-10-CM code/description export supplied with the challenge (release
+      label not stated in file)
+    licence: ICD-10-CM is public domain (CDC/NCHS); file supplied by organisers
+    sha256: 60a91dffd515b77c8c7da0bddfd7b18540421bd445e11bdef129573ad90cd2cd
+  snomed:
+    path: resources/SNOMEDCT_US_codes_and_descriptions.xlsx
+    release: Term Map SNOMED CT US export from index gte_base_fp32, exported 24 Sep
+      2026 (per Notes sheet)
+    licence: SNOMED CT - UMLS / SNOMED International affiliate licence required
+    sha256: 7cd4ea3c94bcdeff9634628e50c665d02c424a4585e3971acfb34bcb7db6e719
+models:
+  lexical:
+    id: built-in (scikit-learn BM25 + char 3-gram TF-IDF)
+    licence: BSD-3 (scikit-learn)
+  reranker:
+    id: LightGBM LambdaRank (lightgbm==4.7.0)
+    licence: MIT
+  dense:
+    status: NOT RUN in submitted build (no Hugging Face access in sandbox)
+    candidates:
+    - id: thenlper/gte-base
+      licence: UNVERIFIED (no network in build sandbox) - check model card before use
+    - id: cambridgeltl/SapBERT-from-PubMedBERT-fulltext
+      licence: UNVERIFIED (no network in build sandbox) - check model card before use
+    - id: FremyCompany/BioLORD-2023
+      licence: UNVERIFIED (no network in build sandbox) - check model card before use
+    - id: ncbi/MedCPT-Query-Encoder
+      licence: UNVERIFIED (no network in build sandbox) - check model card before use
+    revision: pin with `setup_resources.py --revision <commit>`
+crosswalk:
+  status: not supplied
+  expected: NLM SNOMED CT to ICD-10-CM Map (tsv), UMLS licence
+snomed_relationships:
+  status: not supplied
+  expected: SNOMED CT US Edition RF2 sct2_Relationship_Snapshot

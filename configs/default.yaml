@@ -1,0 +1,80 @@
+# TermMap default configuration. Paths are relative to the repository root.
+seed: 13
+num_threads: 2
+feature_cache_dir: models/cache     # hash-keyed resumable feature tables (gitignored)
+
+data:
+  train_path: data/hackathon_train.csv
+  in_scope_subconcept: DiagnosisCode     # only Problem-type rows are in scope
+
+resources:
+  icd_path: resources/icd10cm_codes.xlsx
+  icd_sheet: Sheet1
+  snomed_path: resources/SNOMEDCT_US_codes_and_descriptions.xlsx
+  snomed_sheet: SNOMED codes
+  cache_dir: resources/cache
+  crosswalk_path: ""                 # optional: NLM SNOMED CT -> ICD-10-CM map (tsv). Auxiliary feature only.
+  snomed_relationships_path: ""      # optional: SNOMED CT US RF2 relationship snapshot. Not supplied -> no IS-A.
+
+splits:
+  val_fraction: 0.20
+  test_fraction: 0.15                # FINAL TEST split (from non-val groups); evaluated once
+  code_disjoint_fraction: 0.20       # fraction of distinct gold codes per system held out entirely
+  oof_folds: 5                       # out-of-fold resources for reranker training
+
+normalize:
+  typo_max_distance: 2
+  typo_min_len: 5
+  prefix_min_len: 3
+  max_abbr_expansions: 6
+  max_variants: 10
+
+context:
+  window_tokens: 12
+
+retrieval:
+  bm25_k1: 1.2
+  bm25_b: 0.5
+  top_k_bm25: 50
+  top_k_char: 50
+  top_k_train: 15
+  hier_expand_top: 8
+  max_candidates: 150
+  bridge_enabled: true
+  bridge_min_sim: 0.7
+  bridge_max_variants: 10
+
+augment:
+  frac: 0.25                         # train-time noise augmentation share (Step 2)
+
+rerank:
+  seeds: [13, 14, 15]               # reranker seeds for mean +- std
+  main_variant: stage2_icd_only_calibrated   # frozen after validation (reports/experiment_log.md)
+  stage2: [ICD10CM]                 # second-stage joint reranker: helped ICD on val (+2.5), hurt SNOMED (-1.0)
+  calibrate: true                   # isotonic calibration on OOF predictions (Step 7)
+  code_dropout: 0.35
+  num_leaves: 63
+  learning_rate: 0.05
+  n_estimators: 400
+  min_child_samples: 5
+  feature_fraction: 0.9
+  bagging_fraction: 1.0
+  lambdarank_truncation_level: 30
+
+dense:
+  enabled: true                      # static_vectors backend (offline); sentence encoders NOT run
+  backend: static_vectors            # static_vectors (spaCy en_core_web_lg, offline) | sentence_transformer
+  static_model: en_core_web_lg
+  model_path: ""
+  model_id: thenlper/gte-base
+  batch_size: 256
+  top_k: 30
+  models: []                         # sentence encoders (gte, SapBERT, BioLORD, bge-m3...): OFF by default; see configs/kaggle_dense.yaml
+
+cross_encoder:
+  enabled: false                     # OFF by default; needs OOF tables from scripts/train_cross_encoder.py
+  model_path: ""
+  top_n: 30
+
+llm:
+  enabled: false                     # optional local adjudication; not used in submitted run

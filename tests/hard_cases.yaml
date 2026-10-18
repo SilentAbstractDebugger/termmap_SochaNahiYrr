@@ -1,0 +1,94 @@
+# Hard-case set. PUBLIC examples from the problem statement + clearly labelled SYNTHETIC
+# look-alikes written for this repo (NOT taken from the proprietary training data).
+# expect_*: exact code asserted (only where the statement gives it).
+# plaus_icd_prefix / plaus_snomed_words: plausibility-only assertions (statement gives no code).
+- id: htn
+  source: statement
+  entity: HTN
+  chunk_text: "Assessment: HTN, continue lisinopril."
+  expect_icd: I10
+  expect_snomed: "59621000"
+  # statement-vs-data conflict: training labels map "hypertension" and "htn (hypertension)" to SNOMED
+  # 38341003; training labels win for the model, so the SNOMED code is checked for plausibility only.
+  conflict: snomed
+  plaus_snomed_words: [hypertens]
+- id: essential_htn_well_controlled
+  source: statement
+  entity: essential HTN, well controlled
+  chunk_text: "PMH: essential HTN, well controlled on amlodipine."
+  expect_icd: I10
+  expect_snomed: "59621000"
+- id: hbp_history
+  source: statement
+  entity: h/o high blood pressure
+  chunk_text: "Patient with h/o high blood pressure, here for follow up."
+  expect_icd: I10
+- id: pulmonary_hypertension
+  source: statement
+  entity: pulmonary hypertension
+  chunk_text: "Echo shows elevated RVSP consistent with pulmonary hypertension."
+  expect_icd: I27.20
+- id: malignant_hypertension
+  source: synthetic
+  entity: malignant hypertension
+  chunk_text: "BP 230/140 with papilledema, malignant hypertension."
+  plaus_icd_prefix: [I10, I16, I67.4]
+  plaus_snomed_words: [malignant, hypertens]
+- id: diabetic_neuropathy
+  source: statement
+  entity: diabetic neuropathy
+  chunk_text: "Type 2 DM complicated by diabetic neuropathy of both feet."
+  expect_icd: E11.40
+- id: diabetes_plain
+  source: statement
+  entity: diabetes
+  chunk_text: "History of diabetes, on metformin."
+  expect_icd: E11.9
+- id: ms_mitral
+  source: synthetic
+  entity: MS
+  chunk_text: "Echo: thickened mitral valve leaflets, MS with mean gradient 10 mmHg."
+  plaus_icd_prefix: [I05, I34]
+  plaus_snomed_words: [mitral]
+- id: ms_neuro
+  source: synthetic
+  entity: MS
+  chunk_text: "Relapsing remitting MS, new demyelinating lesions on brain MRI, on interferon."
+  plaus_icd_prefix: [G35]
+  plaus_snomed_words: [sclerosis]
+- id: ra_joint
+  source: synthetic
+  entity: RA
+  chunk_text: "Symmetric small joint synovitis of hands, rheumatoid factor positive, RA flare."
+  plaus_icd_prefix: [M05, M06]
+  plaus_snomed_words: [rheumatoid]
+- id: ra_atrium
+  source: synthetic
+  entity: RA
+  chunk_text: "Echo: RA is severely dilated, right atrial pressure elevated."
+  plaus_icd_prefix: [I51, I31, I34, I36, I37, I27, R93, Q24]
+  plaus_snomed_words: [atri]
+- id: pid_pelvic
+  source: synthetic
+  entity: PID
+  chunk_text: "Lower abdominal pain, cervical motion tenderness, treated for PID with ceftriaxone."
+  plaus_icd_prefix: [N70, N71, N73, N74]
+  plaus_snomed_words: [pelvic]
+- id: pid_disc
+  source: synthetic
+  entity: PID
+  chunk_text: "MRI lumbar spine: L4-L5 PID compressing the right L5 nerve root, radicular pain."
+  plaus_icd_prefix: [M51, M50, M47, M54]
+  plaus_snomed_words: [disc, intervertebral]
+- id: ckd_ocr
+  source: statement
+  entity: chronickidney disease stag 3
+  chunk_text: "Problem list: chronickidney disease stag 3, followed by nephrology."
+  plaus_icd_prefix: [N18.3]
+  plaus_snomed_words: [kidney, stage 3]
+- id: chest_pain
+  source: synthetic
+  entity: chest pain
+  chunk_text: "Presents with chest pain for two days."
+  plaus_icd_prefix: [R07]
+  plaus_snomed_words: [chest pain]

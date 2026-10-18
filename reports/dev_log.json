@@ -1,0 +1,50 @@
+[
+  {
+    "change": "v1: lexical (exact/BM25/char-3g, top 30) + training neighbours + LambdaRank, code dropout 0.35",
+    "icd": 0.5235,
+    "snomed": 0.5,
+    "kept": true
+  },
+  {
+    "change": "+ synonym bridge, + training-mined token translation, top-k 30->50, max candidates 120->150",
+    "icd": 0.5257,
+    "snomed": 0.5019,
+    "kept": true
+  },
+  {
+    "change": "code dropout 0.0 (vs 0.35), same features: unseen-code acc ICD 0.296 vs 0.348, SNOMED 0.402 vs 0.413",
+    "icd": 0.5324,
+    "snomed": 0.5075,
+    "kept": false
+  },
+  {
+    "change": "LambdaRank num_leaves 15 / 7 / 63 (dropout 0.35, no dense)",
+    "icd": "0.528 / 0.524 / 0.539",
+    "snomed": "0.517 / 0.502 / 0.496",
+    "kept": false
+  },
+  {
+    "change": "+ letter/digit split view, + static-vector dense channel (spaCy en_core_web_lg), default leaves 31",
+    "icd": 0.5459,
+    "snomed": 0.4888,
+    "kept": true
+  },
+  {
+    "change": "  same, num_leaves 15 / 63 (63 + min_child 5 selected: best min on val)",
+    "icd": "0.537 / 0.544",
+    "snomed": "0.509 / 0.521",
+    "kept": true
+  },
+  {
+    "change": "+ best_is_first_desc feature; full protocol run (frozen config)",
+    "icd": 0.5503,
+    "snomed": 0.5131,
+    "kept": true
+  },
+  {
+    "change": "context-support bug fix (expansion tokens no longer excluded from context overlap), + abbr_ctx_support, + chunk_overlap, + ICD category training-frequency prior; hard cases 8/15 -> 9/15; code-disjoint ICD 0.336->0.334, SNOMED 0.462->0.466",
+    "icd": 0.5347,
+    "snomed": 0.5112,
+    "kept": true
+  }
+]
