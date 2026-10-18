@@ -4,26 +4,41 @@ TermMap takes one extracted clinical entity (diagnoses, conditions, signs and sy
 **one ICD-10-CM code and one SNOMED CT US concept id**. Both codes are guaranteed to exist in the supplied dictionaries.
 It runs locally and offline after setup. It needs no API key and never sends data anywhere.
 
-> **Honest status.** The 95% target on both systems was **not reached**. The numbers below are interim until the final
-> test split and the final refit are filled in (cells marked **PENDING**). Write-up: [`docs/TermMap_writeup.pdf`](docs/TermMap_writeup.pdf).
+> **Honest status.** The 95% target on both systems was **not reached**. The numbers below are final: the frozen
+> configuration was scored once on the held-out final test split, and `models/final.pkl` was then refit on
+> train+val+test. Write-up: [`docs/TermMap_writeup.pdf`](docs/TermMap_writeup.pdf).
 > Demo video: [DEMO VIDEO LINK]
 
 ## Results
 
 <!-- RESULTS:START -->
-_Status: **interim**. Generated from `docs/results_for_pdf.json` by `python scripts/make_pdf.py`._
+_Status: **final** (iteration 2, frozen configuration `stage2_icd_only_calibrated`). Exact-match accuracy on the primary
+seed with 95% bootstrap CIs (1000 resamples). Source: `reports/metrics.json`, `reports/SUMMARY.md`._
 
-| split | ICD-10-CM | SNOMED CT | headline (lower) |
-|---|---|---|---|
-| Validation (codes seen; 3 seeds) | 0.618 (CI **PENDING**) | 0.565 (CI **PENDING**) | 0.565 |
-| Code-disjoint (codes never seen; 2 seeds) | 0.436 (CI [0.389, 0.484]) | 0.535 (CI [0.487, 0.581]) | 0.436 |
-| Final test (scored once) | **PENDING** (CI **PENDING**) | **PENDING** (CI **PENDING**) | **PENDING** |
+| split | ICD-10-CM | SNOMED CT | headline (lower) | n (ICD / SNOMED) |
+|---|---|---|---|---|
+| Validation (codes seen; 3 seeds) | 0.6085 (CI [0.5659, 0.6511]) | 0.5672 (CI [0.5261, 0.6063]) | 0.5672 | 447 / 536 |
+| Code-disjoint (codes never seen; 2 seeds) | 0.4361 (CI [0.3885, 0.4837]) | 0.5349 (CI [0.4869, 0.5808]) | 0.4361 | 399 / 458 |
+| Final test (scored once; 2 seeds) | 0.6402 (CI [0.5921, 0.6912]) | 0.5995 (CI [0.5522, 0.6468]) | 0.5995 | 353 / 402 |
 
-Target 95% on both systems: **not reached**. Candidate recall of the fused pool (a shortlist ceiling, not accuracy): validation @200 ICD 0.964, SNOMED 0.974; code-disjoint @200 ICD 0.937, SNOMED 0.954. Final refit: **PENDING**. Demo video: [DEMO VIDEO LINK].
+Seed means (ICD / SNOMED): validation 0.618 ± 0.007 / 0.565 ± 0.006; code-disjoint 0.439 ± 0.003 / 0.538 ± 0.003;
+final test 0.643 ± 0.003 / 0.601 ± 0.001.
+
+Target 95% on both systems was **not reached**. The gap on the headline (lower of the two systems) is 0.383 on validation,
+0.514 on code-disjoint and 0.351 on the final test. Candidate recall (a shortlist ceiling, not accuracy), per-channel
+union on validation @200: ICD 0.964, SNOMED 0.974; code-disjoint @200: ICD 0.937, SNOMED 0.954. The fused pool the
+ranker actually sees holds 0.911 (ICD) and 0.918 (SNOMED) of gold codes on validation.
+Final refit: done (`models/final.pkl`, train+val+test, frozen configuration; the final-test numbers above are from the
+model trained **without** the test split). Demo video: [DEMO VIDEO LINK].
+
+Change from iteration 1 (same splits, 3 seeds): validation ICD 0.543 → 0.618 and SNOMED 0.496 → 0.565; code-disjoint
+ICD 0.321 → 0.439 and SNOMED 0.447 → 0.538.
 <!-- RESULTS:END -->
 
-The candidate-pool recall above is a shortlist ceiling, not an accuracy figure. A single encoder's top-1 is much lower,
-so ranking is the weak step. Full tables: `reports/metrics.md`, `reports/ablations.md`, `reports/error_analysis_*.md`, `reports/SUMMARY.md`.
+The candidate-pool recall above is a shortlist ceiling and not an accuracy figure. A single encoder's top-1 is much lower
+(ICD 0.20-0.33, SNOMED 0.43-0.47 on validation), so ranking is the weak step. In the validation ablation, removing the
+dense features costs about 4 points on both systems and removing the ICD hierarchy features about 3 points on ICD; the ICD-only
+second pass adds about 1 point on ICD, which is within noise. Full tables: `reports/metrics.md`, `reports/ablations.md`, `reports/error_analysis_*.md`, `reports/SUMMARY.md`.
 
 ## Architecture (summary)
 
@@ -110,7 +125,9 @@ PYTHONPATH=src python -m pytest -q
 - **What runs without data:** unit tests. Integration tests skip unless the challenge files and the model exist.
 - **What is covered:** schema, dictionary validity, determinism, normalization, qualifiers, hierarchy, leakage,
   dictionary drift, hard cases, fallback modes, the dense code path and the cross-encoder code path.
-- **Hard-case failures are reported, not hidden.** They are genuine model errors, e.g. diabetic neuropathy -> E13.40.
+- **Latest run: 36 of 42 pass.** The six failures are all hard cases: `essential_htn_well_controlled`, `ms_mitral`,
+  `ms_neuro`, `ra_joint`, `ra_atrium`, `pid_disc` (9 of 15 hard cases pass).
+- **Hard-case failures are reported, not hidden.** They are genuine model errors, e.g. "MS" -> aortic stenosis (I35.0).
 
 ## Terminology version drift
 
@@ -126,8 +143,9 @@ make index && make final-test
 
 ## Determinism
 
-- **Same environment:** two runs produce identical output hashes. This was verified only in the documented environment
-  (`reports/determinism.json`).
+- **Latest check failed:** the two-run hash check in `reports/determinism.json` on the final configuration returned
+  **MISMATCH** (CPU-only run, Python 3.13). An earlier sparse + static-vector run (iteration 1) did give identical hashes.
+  Treat bit-identical output as **not currently verified** for the final configuration.
 - **What is fixed:** seeds, exact flat indexes, tie-breaks (score desc, code asc), deterministic LightGBM with fixed
   threads, and cached embeddings / scores.
 - **Across hardware:** bit-identical results are not claimed.
@@ -143,13 +161,21 @@ make index && make final-test
 ## Limitations
 
 - **The 95% target was not reached** (see the results table).
-- **Ranking is the weak step:** union recall @200 is about 0.96-0.97 on validation, but top-1 accuracy is much lower.
-- **Abbreviation collisions are only partly solved.**
-  - The ICD side fails on the MS (mitral-valve context), RA and PID hard cases.
-  - Diabetic neuropathy is coded E13.40 instead of E11.40.
-- **Statement-vs-label conflict (HTN):** training labels map it to SNOMED 38341003, the statement shows 59621000. Training labels win.
-- **Not evaluated:** the cross-encoder scores were lost in a session reset; fine-tuning and LLM adjudication were not run.
-- **CPU-only speed:** about 6 terms/s, 0.34 s median per term, about 5.5 GB peak RAM.
+- **Ranking is the weak step:** union recall @200 is about 0.96-0.97 on validation, but exact match is 0.61 (ICD) and
+  0.57 (SNOMED). Of validation errors, 135 (ICD) and 188 (SNOMED) are rank misses; 40 and 44 are retrieval misses.
+- **Long tail:** on codes never seen in training, accuracy is 0.42 (ICD) and 0.51 (SNOMED) on validation, and 0.44 / 0.53
+  on the code-disjoint fold.
+- **Noisy and abbreviated terms are weaker:** on validation, noisy / out-of-vocabulary terms score 0.55 (ICD) and 0.40
+  (SNOMED); history-flagged terms score 0.53 and 0.40.
+- **Abbreviation collisions are only partly solved.** The hard cases for MS (mitral-valve and neurological context), RA
+  and PID still fail. Diabetic neuropathy now passes (E11.40).
+- **Statement-vs-label conflict (HTN):** training labels map "HTN" to SNOMED 38341003, the statement shows 59621000.
+  Training labels win. The related case "essential HTN, well controlled" still fails (SNOMED returned 80394007, expected
+  59621000).
+- **Not evaluated:** the MedCPT cross-encoder, contrastive fine-tuning and LLM adjudication were not run for accuracy.
+- **CPU-only speed (final configuration, 2 threads):** 1.48 terms/s for both systems on a batch of 576, single-term
+  latency median 6.2 s (p95 8.7 s), peak RAM about 25 GB. GPU throughput was not measured. The earlier sparse +
+  static-vector configuration was much faster (about 7.7 terms/s, 0.3 s median, 4.4 GB).
 
 ## External resources
 
@@ -164,12 +190,3 @@ make index && make final-test
 | LightGBM, scikit-learn, RapidFuzz, FAISS (exact flat index) | pinned in requirements.txt | MIT / BSD-3 / MIT / MIT |
 | Supplied ICD-10-CM export; SNOMED CT US export (Term Map gte_base_fp32 index) | file hashes in configs/resources.yaml | SNOMED CT licence applies |
 
-## Open questions for the organizers
-
-1. **Evaluation schema:** long or wide?
-2. **Partial credit:** is there any, or exact match only?
-3. **Multiple valid codes / conflicts:** how are statement-vs-label conflicts handled?
-4. **Annotator agreement:** what is the inter-annotator agreement on the gold labels?
-5. **Floors:** are there per-category accuracy floors?
-6. **One-label rows:** how are rows with only one gold system scored?
-7. **Hosted notebooks:** is running on a hosted notebook (Kaggle) approved?
