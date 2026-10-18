@@ -1,81 +1,296 @@
 {
-  "_README": "Single source of every number in docs/TermMap_writeup.pdf and in the README results block. Edit values here, then run: python scripts/make_pdf.py . Any value equal to the string PENDING is rendered with a yellow PENDING marker. 'status' = interim | final.",
-  "status": "interim",
+  "_README": "Single source of every number in docs/TermMap_writeup.pdf and in the README results block. Edit values here, then run: python scripts/make_pdf.py . Any value equal to the string PENDING is rendered with a yellow PENDING marker. 'status' = interim | final. Filled from the Kaggle run (reports/metrics.json, metrics.md, ablations.md, dense_benchmark.md, error_analysis_*.md, benchmark.json, hard_cases.json, pytest.xml, determinism.json).",
+  "status": "final",
   "demo_video_link": "[DEMO VIDEO LINK]",
   "repo_link": "PENDING",
-
   "data": {
-    "icd_rows": 2305, "snomed_rows": 2700, "pairs": 2882, "pairs_both_labels": 2123,
-    "snomed_codes_singleton_share": "72%", "icd_codes_singleton_share": "about 54%",
+    "icd_rows": 2305,
+    "snomed_rows": 2700,
+    "pairs": 2882,
+    "pairs_both_labels": 2123,
+    "snomed_codes_singleton_share": "72%",
+    "icd_codes_singleton_share": "about 54%",
     "malformed_gold": "L6.0 (2 rows), reported, never remapped",
-    "icd_dictionary_rows": 159306, "snomed_description_rows": 984585, "snomed_concepts": 382124
+    "icd_dictionary_rows": 159306,
+    "snomed_description_rows": 984585,
+    "snomed_concepts": 382124
   },
-
   "results": {
-    "validation": {"icd": 0.618, "snomed": 0.565, "headline": 0.565, "seeds": 3, "ci_icd": "PENDING", "ci_snomed": "PENDING", "n_icd": "PENDING", "n_snomed": "PENDING"},
-    "code_disjoint": {"icd": 0.436, "snomed": 0.535, "headline": 0.436, "seeds": 2, "ci_icd": "[0.389, 0.484]", "ci_snomed": "[0.487, 0.581]", "n_icd": 399, "n_snomed": 458},
-    "final_test": {"icd": "PENDING", "snomed": "PENDING", "headline": "PENDING", "seeds": "PENDING", "ci_icd": "PENDING", "ci_snomed": "PENDING", "n_icd": "PENDING", "n_snomed": "PENDING"},
-    "final_refit": "PENDING",
-    "earlier_cpu_only": {"val_icd": 0.567, "val_snomed": 0.504, "cd_icd": 0.328, "cd_snomed": 0.454,
-                         "note": "CPU-only run without the four dense encoders; code-disjoint row counts differ, so not exactly like-for-like"},
+    "validation": {
+      "icd": 0.618,
+      "snomed": 0.565,
+      "headline": 0.565,
+      "seeds": 3,
+      "ci_icd": "[0.566, 0.651]",
+      "ci_snomed": "[0.526, 0.606]",
+      "n_icd": 447,
+      "n_snomed": 536,
+      "note": "point values are 3-seed means; CIs and n are for the primary seed (ICD 0.6085, SNOMED 0.5672)"
+    },
+    "code_disjoint": {
+      "icd": 0.436,
+      "snomed": 0.535,
+      "headline": 0.436,
+      "seeds": 2,
+      "ci_icd": "[0.389, 0.484]",
+      "ci_snomed": "[0.487, 0.581]",
+      "n_icd": 399,
+      "n_snomed": 458
+    },
+    "final_test": {
+      "icd": 0.64,
+      "snomed": 0.6,
+      "headline": 0.6,
+      "seeds": 2,
+      "ci_icd": "[0.592, 0.691]",
+      "ci_snomed": "[0.552, 0.647]",
+      "n_icd": 353,
+      "n_snomed": 402,
+      "note": "primary seed, scored once with the frozen configuration before the refit; 2-seed means ICD 0.643, SNOMED 0.601; headline CI [0.550, 0.637]; gap to 95% target 0.351"
+    },
+    "final_refit": "models/final.pkl refit on train+val+test with the frozen configuration (so the final model has seen the test split; the test numbers above come from the pre-refit model)",
+    "earlier_cpu_only": {
+      "val_icd": 0.567,
+      "val_snomed": 0.504,
+      "cd_icd": 0.328,
+      "cd_snomed": 0.454,
+      "note": "CPU-only run without the four dense encoders; code-disjoint row counts differ, so not exactly like-for-like"
+    },
     "target": 0.95
   },
-
   "recall": {
-    "fused_union_val_at100": {"icd": 0.937, "snomed": 0.966},
-    "fused_union_val_at200": {"icd": 0.964, "snomed": 0.974},
-    "fused_union_cd_at200": {"icd": 0.937, "snomed": 0.954},
+    "fused_union_val_at100": {
+      "icd": 0.937,
+      "snomed": 0.966
+    },
+    "fused_union_val_at300": {
+      "icd": 0.964,
+      "snomed": 0.974
+    },
+    "fused_union_cd_at300": {
+      "icd": 0.94,
+      "snomed": 0.961
+    },
+    "fused_union_val_at200": {
+      "icd": 0.964,
+      "snomed": 0.974
+    },
+    "fused_union_cd_at200": {
+      "icd": 0.937,
+      "snomed": 0.954
+    },
+    "recall_label_note": "dense_benchmark.md reports union R@100 and R@300 (no @200). The interim '@200' figures match R@300 and are kept under the old keys only for script compatibility: label them @300 in the PDF.",
+    "reranker_pool_recall_val": {
+      "icd": 0.911,
+      "snomed": 0.918
+    },
+    "reranker_pool_recall_cd": {
+      "icd": 0.802,
+      "snomed": 0.88
+    },
+    "reranker_pool_recall_final_test": {
+      "icd": 0.898,
+      "snomed": 0.938
+    },
     "before_dense_val_at200": "about 0.83",
-    "single_model_top1_val": {"icd": "0.20 to 0.33", "snomed": "0.43 to 0.47"},
-    "retrieval_miss_vs_rank_miss": "PENDING"
+    "single_model_top1_val": {
+      "icd": "0.20 to 0.33",
+      "snomed": "0.43 to 0.47"
+    },
+    "retrieval_miss_vs_rank_miss": "validation ICD 40 retrieval / 135 rank (of 175 errors); SNOMED 44 / 188 (of 232). Final test ICD 36 / 91; SNOMED 25 / 136"
   },
-
   "ablations_val": [
-    ["full model (stage 1 + ICD second pass)", 0.618, 0.565],
-    ["stage 1 only (no second pass)", 0.608, 0.565],
-    ["no dense encoders", 0.570, 0.528],
-    ["no ICD hierarchy features", 0.577, 0.565],
-    ["no training neighbours", 0.595, 0.559],
-    ["no context features", 0.607, 0.567],
-    ["no RRF fusion feature", 0.612, 0.563],
-    ["no qualifier features", 0.612, 0.559],
-    ["no noise-augmented rows", 0.606, 0.568],
-    ["no learned priors", 0.617, 0.571]
+    [
+      "full model (stage 1 + ICD second pass)",
+      0.618,
+      0.565
+    ],
+    [
+      "stage 1 only (no second pass)",
+      0.608,
+      0.565
+    ],
+    [
+      "no dense encoders",
+      0.57,
+      0.528
+    ],
+    [
+      "no ICD hierarchy features",
+      0.577,
+      0.565
+    ],
+    [
+      "no training neighbours",
+      0.595,
+      0.559
+    ],
+    [
+      "no context features",
+      0.607,
+      0.567
+    ],
+    [
+      "no RRF fusion feature",
+      0.612,
+      0.563
+    ],
+    [
+      "no qualifier features",
+      0.612,
+      0.559
+    ],
+    [
+      "no noise-augmented rows",
+      0.606,
+      0.568
+    ],
+    [
+      "no learned priors",
+      0.617,
+      0.571
+    ]
   ],
-
   "slices_val_icd": {
-    "by_train_freq": {"unseen": 0.42, "1": 0.68, "2-5": 0.68, "6+": 0.70},
-    "abbreviation_terms": 0.60,
+    "by_train_freq": {
+      "unseen": 0.42,
+      "1": 0.68,
+      "2-5": 0.68,
+      "6+": 0.7
+    },
+    "abbreviation_terms": 0.6,
     "weak_chapters": "F 0.36 (n=11); M, E and I about 0.60 to 0.64"
   },
-  "slices_val_snomed": {"by_train_freq": "PENDING", "abbreviation_terms": "PENDING"},
-  "calibration": {"ece_val_icd": "PENDING", "ece_val_snomed": "PENDING", "coverage_at_conf_0.7": "PENDING"},
-  "failure_modes_counts": "PENDING",
-
-  "engineering": {
-    "cpu_terms_per_second": "about 6", "cpu_median_latency_s": 0.34, "cpu_peak_ram": "about 5.5 GB",
-    "gpu_terms_per_second": "PENDING", "per_term_model_calls": "none (no cross-encoder or LLM in the final model)",
-    "determinism": "identical output hashes across two runs, verified in one environment only",
-    "tests": "PENDING"
+  "slices_val_snomed": {
+    "by_train_freq": {
+      "unseen": 0.51,
+      "1": 0.67,
+      "2-5": 0.63,
+      "6+": 0.59
+    },
+    "abbreviation_terms": 0.51
   },
-
+  "slices_final_test": {
+    "icd_by_train_freq": {
+      "unseen": 0.42,
+      "1": 0.69,
+      "2-5": 0.65,
+      "6+": 0.73
+    },
+    "snomed_by_train_freq": {
+      "unseen": 0.48,
+      "1": 0.65,
+      "2-5": 0.71,
+      "6+": 0.86
+    },
+    "abbreviation_terms": {
+      "icd": 0.62,
+      "snomed": 0.56
+    }
+  },
+  "calibration": {
+    "ece_val_icd": "0.063 (0.156 before calibration)",
+    "ece_val_snomed": "0.057 (0.189 before calibration)",
+    "coverage_at_conf_0.7": "ICD: 36% of rows at 0.87 accuracy; SNOMED: 30% of rows at 0.93 accuracy (validation)",
+    "final_test_ece": "ICD 0.058, SNOMED 0.054"
+  },
+  "failure_modes_counts": "Validation ICD (175 errors): FM1 71; FM2 84; FM3 42; FM5 74; FM6 15. SNOMED (232 errors): FM1 106; FM2 118; FM5 143; FM6 31. FM4 (407 pairs with both labels): both right 185, ICD right only 66, SNOMED right only 74, both wrong 82. FM7: 0 dictionary/version mismatches. Counts overlap (one error can touch several modes).",
+  "engineering": {
+    "cpu_terms_per_second": "1.48 (full model with four dense encoders, 4 CPU cores, batch of 576); about 6 in the earlier CPU-only run without dense encoders",
+    "cpu_median_latency_s": "6.19 single term (p95 8.71) with dense encoders; 0.34 in the earlier no-dense run",
+    "cpu_peak_ram": "about 25.3 GB with dense encoders; about 5.5 GB in the earlier no-dense run",
+    "gpu_terms_per_second": "not measured (benchmark.json: GPU mode NOT RUN)",
+    "per_term_model_calls": "no cross-encoder or LLM calls; 5 dense query encodings per term",
+    "determinism": "NOT confirmed: the latest two-run check gave different output hashes (MISMATCH, CPU only). An earlier check on the no-dense model matched. Cause not yet investigated",
+    "tests": "36 of 42 passed; the 6 failures are hard-case assertions (essential HTN, MS x2, RA x2, PID disc), not crashes"
+  },
   "hard_cases": [
-    ["HTN (statement)", "statement-vs-label conflict: training maps 'hypertension' and 'htn (hypertension)' to SNOMED 38341003, statement shows 59621000; training labels win"],
-    ["diabetic neuropathy (statement)", "FAIL: ICD E13.40 instead of E11.40"],
-    ["MS with mitral-valve context (synthetic)", "FAIL on the ICD side"],
-    ["RA (synthetic, joint and atrium contexts)", "FAIL on the ICD side"],
-    ["PID (synthetic, pelvic and disc contexts)", "FAIL on the ICD side for at least one sense"],
-    ["chronickidney disease stag 3 (statement)", "PENDING (final model)"],
-    ["chest pain (synthetic)", "PENDING (final model)"]
+    [
+      "HTN (statement)",
+      "PASS: I10 / 38341003. Statement-vs-label conflict: training maps 'hypertension' and 'htn (hypertension)' to SNOMED 38341003, statement shows 59621000; training labels win"
+    ],
+    [
+      "essential HTN, well controlled (statement)",
+      "FAIL on SNOMED: returned Hyperglycemia 80394007 instead of 59621000; ICD I10 correct"
+    ],
+    [
+      "diabetic neuropathy (statement)",
+      "PASS: E11.40 / 230572002 (the interim E13.40 error is fixed in this run); plain 'diabetes' gives E11.9"
+    ],
+    [
+      "pulmonary hypertension (statement)",
+      "PASS: I27.20 / 70995007"
+    ],
+    [
+      "MS with mitral-valve context (synthetic)",
+      "FAIL: ICD I35.0 (aortic stenosis) instead of I05/I34; SNOMED gives congenital mitral stenosis 82458004"
+    ],
+    [
+      "MS with neurology context (synthetic)",
+      "FAIL: same output as the mitral case (ICD I35.0, SNOMED 82458004); context did not change the answer"
+    ],
+    [
+      "RA, joint context (synthetic)",
+      "FAIL: ICD R41.3 (amnesia), SNOMED right-atrium concept; rheumatoid sense not found"
+    ],
+    [
+      "RA, atrium context (synthetic)",
+      "FAIL on ICD: R41.3 (amnesia)"
+    ],
+    [
+      "PID, pelvic context (synthetic)",
+      "PASS: N73.9 / 198130006"
+    ],
+    [
+      "PID, disc context (synthetic)",
+      "FAIL: returns the pelvic sense; disc sense not found"
+    ],
+    [
+      "chronickidney disease stag 3 (statement)",
+      "PASS: N18.30 / 433144002"
+    ],
+    [
+      "chest pain (synthetic)",
+      "PASS: R07.9 / 29857009"
+    ]
   ],
-
+  "hard_case_summary": "9 of 15 pass; failures are all abbreviation collisions (MS, RA, PID disc) plus essential HTN SNOMED. Run on the model in the hard-case stage (refit status not recorded in the report).",
   "resources": [
-    ["thenlper/gte-base", "c078288308d8dee004ab72c6191778064285ec0c", "MIT"],
-    ["cambridgeltl/SapBERT-from-PubMedBERT-fulltext", "090663c3ae57bf35ffe4d0d468a2a88d03051a4d", "Apache-2.0"],
-    ["FremyCompany/BioLORD-2023", "167aab527b238a50ca65224e6319215d2ff4fc9f", "other: verify on model card"],
-    ["BAAI/bge-m3", "5617a9f61b028005a4858fdac845db406aefb181", "MIT"],
-    ["ncbi/MedCPT-Cross-Encoder (implemented, not evaluated)", "71caf65d4927987813984f54c284405a13fcca49", "other: verify on model card"],
-    ["spaCy en_core_web_lg 3.8.0", "release wheel", "verify on model card"],
-    ["LightGBM, scikit-learn, RapidFuzz, FAISS (exact flat index)", "pinned in requirements.txt", "MIT / BSD-3 / MIT / MIT"]
-  ]
+    [
+      "thenlper/gte-base",
+      "c078288308d8dee004ab72c6191778064285ec0c",
+      "MIT"
+    ],
+    [
+      "cambridgeltl/SapBERT-from-PubMedBERT-fulltext",
+      "090663c3ae57bf35ffe4d0d468a2a88d03051a4d",
+      "Apache-2.0"
+    ],
+    [
+      "FremyCompany/BioLORD-2023",
+      "167aab527b238a50ca65224e6319215d2ff4fc9f",
+      "other: verify on model card"
+    ],
+    [
+      "BAAI/bge-m3",
+      "5617a9f61b028005a4858fdac845db406aefb181",
+      "MIT"
+    ],
+    [
+      "ncbi/MedCPT-Cross-Encoder (implemented, not evaluated)",
+      "71caf65d4927987813984f54c284405a13fcca49",
+      "other: verify on model card"
+    ],
+    [
+      "spaCy en_core_web_lg 3.8.0",
+      "release wheel",
+      "MIT (vectors CC0), read from the packaged meta.json"
+    ],
+    [
+      "LightGBM, scikit-learn, RapidFuzz, FAISS (exact flat index)",
+      "pinned in requirements.txt",
+      "MIT / BSD-3 / MIT / MIT"
+    ]
+  ],
+  "resources_note": "The run log records the four dense encoders as 'unpinned' (revision hashes above were taken from the model pages, not enforced at load time). Pin them in the config before claiming exact reproducibility."
 }
