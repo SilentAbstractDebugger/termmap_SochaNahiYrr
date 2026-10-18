@@ -1,0 +1,18 @@
+# Verified environment (Python 3.13.16, Linux x86_64, CPU only)
+numpy==2.5.3
+pandas==3.0.5
+scipy==1.18.1
+scikit-learn==1.9.1
+lightgbm==4.7.0
+rapidfuzz==3.14.6
+openpyxl==3.1.5
+PyYAML==6.0.3
+matplotlib==3.11.2
+reportlab==5.0.1
+pytest==9.1.1
+# optional static-vector dense channel (evaluated, see reports/metrics.json)
+spacy==3.8.7
+# en_core_web_lg 3.8.0: pip install https://github.com/explosion/spacy-models/releases/download/en_core_web_lg-3.8.0/en_core_web_lg-3.8.0-py3-none-any.whl
+# optional GPU stages (dense encoders, fine-tuning, cross-encoder; OFF by default; NOT run in the build sandbox):
+# torch==2.7.1 transformers==4.57.6 sentence-transformers==5.1.1 faiss-cpu==1.15.1 datasets==4.1.1
+# accelerate>=0.26 "huggingface-hub>=0.34,<1.0"
