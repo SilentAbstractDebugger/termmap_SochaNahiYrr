@@ -6,7 +6,7 @@ It runs locally and offline after setup. It needs no API key and never sends dat
 
 > **Honest status.** The 95% target on both systems was **not reached**. The numbers below are final: the frozen
 > configuration was scored once on the held-out final test split, and `models/final.pkl` was then refit on
-> train+val+test. Write-up: [`docs/TermMap_writeup.pdf`](docs/TermMap_writeup.pdf).
+> train+val+test. Write-up: [`Documentation`](https://drive.google.com/file/d/1Y7R2CihC5K0tMIa4llPmJRG0-p9_KYZY/view?usp=sharing).
 
 
 ## Results
@@ -29,7 +29,7 @@ Target 95% on both systems was **not reached**. The gap on the headline (lower o
 union on validation @200: ICD 0.964, SNOMED 0.974; code-disjoint @200: ICD 0.937, SNOMED 0.954. The fused pool the
 ranker actually sees holds 0.911 (ICD) and 0.918 (SNOMED) of gold codes on validation.
 Final refit: done (`models/final.pkl`, train+val+test, frozen configuration; the final-test numbers above are from the
-model trained **without** the test split). Demo video: [DEMO VIDEO LINK].
+model trained **without** the test split). Demo video: [[DEMO VIDEO](https://drive.google.com/file/d/1pwAeCZpRqfy7EAgY4hc2QXVSw1okTx9E/view?usp=sharing)].
 
 Change from iteration 1 (same splits, 3 seeds): validation ICD 0.543 → 0.618 and SNOMED 0.496 → 0.565; code-disjoint
 ICD 0.321 → 0.439 and SNOMED 0.447 → 0.538.
